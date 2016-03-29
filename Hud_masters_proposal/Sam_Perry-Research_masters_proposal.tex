@@ -1,0 +1,131 @@
+\documentclass{scrartcl}
+\usepackage{enumitem}
+\usepackage[british]{babel}
+\usepackage[style=apa, backend=biber]{biblatex}
+\DeclareLanguageMapping{british}{british-apa}
+\usepackage{url}
+\usepackage{float}
+\restylefloat{table}
+\usepackage{perpage}
+\MakePerPage{footnote}
+
+\addbibresource{~/PerryPerrySource/LaTeX/Hud_masters.bib}
+
+\begin{document}
+
+    \title{Huddersfield Research Masters}
+    \subtitle{Combined F0 Estimation Algorithm Proposal}
+    \author{Sam Perry}
+    \date{}
+    \maketitle
+
+    \begin{abstract}
+        The pitch of audio is a perceptually important characteristic as it
+        forms the building block for musical characteristics such as key,
+        melody, and harmony. Many methods have been developed for estimating
+        the fundamental frequency of a signal, however very few have come close
+        to generating estimations that resemble human perception of pitch with
+        the same level of detail. Factors such as noise and the absence of a
+        clear fundamental frequency cause erroneous results in algorithms and
+        the concept of polyphony further complicates the problem as this
+        requires the separation of different notes. The variety of estimation
+        algorithms available has lead to a selection of methods that each
+        perform to varying standards depending on conditions. For example,
+        time-domain approaches, such as the autocorrelation approach, are able
+        to detect the correct pitch of a signal more accurately than frequency
+        domain approaches, such as the harmonic-product spectrum method, when
+        the fundamental frequency is missing. However neither is able to detect
+        multiple pitches in the way that the MUSIC algorithm can.  
+    \end{abstract}
+
+    \section{Overview}
+    This project would aim to explore the possibility of combining pre-existing
+    algorithms based on audio descriptor analyses in order to adaptively select
+    the algorithm with the best chance of an accurate estimate. The aim would
+    be to create a robust tool for offline (and potentially realtime)
+    estimation of F0 values.
+
+    \section{Background/Existing Techniques}
+    \subsection{F0 Estimation Techniques}
+    The most popular F0 estimation algorithms can be categorized as one of
+    two types:
+    \begin{itemize}
+        \item Spectral Techniques
+        \item Temporal Techniques
+    \end{itemize}
+    \subsubsection{Spectral Techniques}
+    Spectral techniques focus on analysing the spectral content of the signal
+    by using output from an FFT to perform further processing to determine the
+    F0 value. Types of technique that can be categorized in this way include:
+    \begin{itemize}
+        \item Harmonic Product Spectrum~\parencite[p.8]{smyth2015hps}
+        \item Cepstral analysis
+        \item Maximum likelihood
+    \end{itemize}
+    \subsubsection{Temporal Techniques}
+    Temporal techniques attempt to calculate the periodicity of the signal.
+    This can then be inverted to produce the frequency.
+    Types of technique that can be categorized in this way include:
+    \begin{itemize}
+        \item Autocorrelation~\parencite[p.98]{lerch2012itaca}
+        \item Zero-crossing~\parencite[p.98]{lerch2012itaca}
+        \item NCCF (normalized cross correlation function)~\parencite{kasi2015yaapt}
+    \end{itemize}
+    \subsection{Current methods for technique combination} 
+    \label{sec:ComMeth}
+    There is considerably less research into the combination of multiple
+    algorithms for the improvement of results. Limited research has been
+    carried out into the effects of training supervised learning algorithms to
+    pick results based on circumstances.
+    The ``Yet Another Algorithm for Pitch Tracking'' algorithm attempts to
+    refine temporal analysis results through the analysis of spectral
+    information.~\cite{kasi2015yaapt}
+    Overall there remains a large scope for the type of research proposed.
+
+    \section{Methodology}
+        A detailed analysis of a variety of the most prominent F0 estimation
+        techniques will be presented, to determine the quantity of methods
+        needed and which methods will produce the best quality results. Methods
+        for selecting an algorithm will also require significant further
+        research.  Potential techniques to be explored include: 
+        \begin{itemize}
+            \item Applying machine learning algorithms in order to
+                automatically determine the best algorithm as described in
+                section \ref{sec:ComMeth}~\parencite{bogason2015ffesl}
+            \item Leveraging information gained from prior feature extraction
+                to determine aspects such as the signal's noisiness in order to
+                select the algorithm best suited to this description.
+            \item Dynamic algorithm parameter adoption to improve the likelihood
+                of an accurate estimation based on descriptors. Adapting window
+                size for example.~\parencite{liuni2012aasas}
+        \end{itemize}
+        Having determined the optimal set of estimation algorithms and
+        selection techniques, these will be implemented in python, or
+        potentially a faster compiled language such as C, to create a tool
+        capable of creating robust F0 estimations for a range of varying audio
+        files.
+        
+    \section{Significance of Research}
+        This research aims to explore possible improvements to the overall
+        robustness and general accuracy of pitch detection and thus has
+        significance in fields such as music and speech analysis and
+        transformations. By taking a higher level approach to the problem, it
+        is hoped that the careful combination of algorithms will yield a
+        superior overall outcome to that of the individual algorithms.
+
+    \section{Timeline}
+    \begin{table}[H]
+    \centering
+    \label{my-label}
+    \begin{tabular}{ll}
+    Month 1 - 3  & Initial research into methods and combination techniques                                                                   \\
+                 & as well as the set up of initial framework for code if necessary.                                                          \\
+    Month 3 - 6  & Implementation and testing of individual algorithms.                                                                       \\
+    Month 6 - 9  & Implementation of combination methods.                                                                                     \\
+    Month 9 - 12 & Analysis of results and work on method improvements.                                                                      
+    \end{tabular}
+    \end{table}
+
+    \printbibliography
+
+\end{document}

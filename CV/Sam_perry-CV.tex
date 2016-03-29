@@ -1,0 +1,217 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{multicol}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+
+% Fonts
+\usepackage[T1]{fontenc}
+\usepackage[urw-garamond]{mathdesign}
+
+% Set your name here
+\def\name{Samuel Perry}
+
+% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = {DSP, Programmer},
+  pdftitle = {\name: Curriculum Vitae},
+  pdfsubject = {Curriculum Vitae},
+  pdfpagemode = UseNone
+}
+
+\geometry{
+  body={6.5in, 9.0in},
+  left=1.0in,
+  top=1.0in
+}
+
+% Customize page headers
+\pagestyle{myheadings}
+\markright{\name}
+\thispagestyle{empty}
+
+% Custom section fonts
+\usepackage{sectsty}
+\sectionfont{\rmfamily\mdseries\Large}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Other possible font commands include:
+% \ttfamily for teletype,
+% \sffamily for sans serif,
+% \bfseries for bold,
+% \scshape for small caps,
+% \normalsize, \large, \Large, \LARGE sizes.
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets and compact spacing
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1.5em}
+    \setlength{\itemsep}{0.25em}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0.25em}
+  }
+}{
+  \end{list}
+}
+\setlist[enumerate]{itemsep=0.25em}
+
+\begin{document}
+
+% Place name at left
+{\huge \name}
+
+% Alternatively, print name centered and bold:
+%\centerline{\huge \bf \name}
+
+\bigskip
+
+\begin{minipage}[t]{0.495\textwidth}
+  20 Lower Luton Road\\
+  Wheathampstead\\
+  Hertfordshire\\
+  AL4 8QZ\\
+
+\end{minipage}
+\begin{minipage}[t]{0.495\textwidth}
+    Phone: (+44) 7766 521596\\
+    Email: \href{mailto:samuel.perry89@gmail.com}{samuel.perry89@gmail.com} \\
+    Linked-in: \\\href{https://uk.linkedin.com/in/sam-perry-04245438}{https://uk.linkedin.com/in/sam-perry-04245438}
+\end{minipage}
+
+\section*{Personal Profile}
+
+A highly motivated and ambitious graduate with a background in programming and
+digital signal processing in a musical context. Aiming to further knowledge and
+understanding of digital signal processing techniques, building on previous
+experience in this area. Capable of understanding and utilising signal
+processing techniques for the realization of signal processing applications for
+a variety of use cases, as proved through recent studies and employment.
+Through further studies in a technically oriented environment,  the objective
+is to gain a deeper understanding in this field in order to facilitate future
+employment or research opportunities.
+
+\section*{Employment}
+
+\begin{itemize}
+    \item Institut de Recherche et Coordination Acoustique/Musique (IRCAM)
+\end{itemize}
+
+\subsection*{IRCAM}
+    Role: Student Research Assistant \\
+    Team: Analysis \& Synthesis team \\
+    Location: Paris, France \\
+    Period: August 2014 - July 2015 \\
+    \newline
+    Description: \\
+    Worked on a range of DSP related projects and tasks for the Analysis and
+    Synthesis team. Modified and improved a number of programs, primarily in
+    Python, with particular focus on vocal and musical processing.  Major
+    project involved using audio descriptor analyses to drive transformations
+    on vocal corpus. Worked alongside a variety of researchers and
+    professionals developing new and innovative signal processing techniques in
+    fields of research such as such as vocal transformations and audio/musical
+    content analysis. \\
+    \newline
+    Key areas explored:
+    \begin{itemize}
+        \item \textit{Audio content analysis}\\
+            Utilised a number of audio descriptors to test for similarities in
+            audio for a content matching algorithm
+        \item \textit{Vocal segmentation/classification}\\
+            Improved the efficiency of the content matching algorithm through
+            addition of vocal segment classification and tree search algorithm.
+        \item \textit{Distributed computing/Asynchronous processing}\\
+            Debugged and improved a program that utilised distributed task
+            scheduling for computation heavy analysis of audio
+    \end{itemize}
+
+\newpage
+
+\section*{Education}
+
+\begin{itemize}
+    \item Music Technology (BA), The University of Huddersfield, 2012.
+    \begin{itemize}
+    \item \emph{Final Research Project:} ``Audio Descriptor Driven
+        Concatenative Synthesis of Corpus Databases'' \\
+        - details of which can be found at:
+        \href{http://pezz89.github.io/pysound/}{http://pezz89.github.io/pysound/}.
+    \item \emph{Predicted Classification:} "Borderline 2:1/first" - refer to
+        A.Harker written reference.
+    \end{itemize}
+  \item Music Technology BTEC Extended Diploma.
+    \begin{itemize}
+    \item \emph{Achievement:} Triple distinction awarded.
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Music Technology (BA)}
+    Overview: \\
+    Study involved developing a broad understanding of musical signal
+    processing techniques through modules in topics such as DSP, Interactive
+    Sound Design and a final research project based on a novel technique for
+    audio synthesis  \\
+    A detailed understanding of signal processing methods such as signal filtering,
+    spectral and temporal analysis, and granular synthesis were developed
+    through the practical application of these techniques for creative
+    purposes. Developer environments and languages such as Matlab, Python and
+    C++ were used to apply these concepts in software. An understanding of
+    application in hardware was also developed through the use of
+    microcontrollers to develop implementations of digital filters.
+
+
+\section*{Key Skills}
+
+\textit{Competent in the following programming languages, packages and environments:}
+\begin{multicols}{3}
+\begin{itemize}
+    \item Python
+    \item Matlab
+    \item C++
+    \item \LaTeX
+    \item Max/MSP
+    \item Vim
+    \item Bash script
+    \item Mac OSX
+    \item Git
+    \item HDF5 File system
+    \item Unix
+    
+\end{itemize}
+\end{multicols}
+
+\section*{References}
+\begin{table}[h]
+\centering
+\label{my-label}
+\begin{tabular}{ll}
+    \textit{Employer Reference} & \textit{Academic Reference} \\
+    \begin{tabular}[c]{@{}l@{}}
+         Axel Roebel \\
+         Head of the Analysis/Synthesis Research Team \\
+         IRCAM \\
+         Research Institute, Paris \\
+         Contact details available on request. \\
+    \end{tabular} & \begin{tabular}[c]{@{}l@{}}
+         Alex Harker \\
+         Huddersfield University Lecturer \\
+         The University of Huddersfield \\
+         University Telephone: 01484 473043 \\
+         E-mail: a.harker@hud.ac.uk \\
+    \end{tabular}
+\end{tabular}
+\end{table}
+
+% Footer
+\bigskip
+{\small Last updated: \today}
+
+\end{document}

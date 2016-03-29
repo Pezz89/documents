@@ -1,0 +1,141 @@
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{multicol}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+
+% Fonts
+\usepackage[T1]{fontenc}
+\usepackage[urw-garamond]{mathdesign}
+
+% Set your name here
+\def\name{Samuel Perry}
+
+% The following metadata will show up in the PDF properties
+\hypersetup{
+  colorlinks = true,
+  urlcolor = black,
+  pdfauthor = {\name},
+  pdfkeywords = {DSP, Programmer},
+  pdftitle = {\name: Curriculum Vitae},
+  pdfsubject = {Curriculum Vitae},
+  pdfpagemode = UseNone
+}
+
+\geometry{
+  body={6.5in, 9.0in},
+  left=1.0in,
+  top=1.0in
+}
+
+% Customize page headers
+\pagestyle{myheadings}
+\markright{\name}
+\thispagestyle{empty}
+
+% Custom section fonts
+\usepackage{sectsty}
+\sectionfont{\rmfamily\mdseries\Large}
+\subsectionfont{\rmfamily\mdseries\itshape\large}
+
+% Other possible font commands include:
+% \ttfamily for teletype,
+% \sffamily for sans serif,
+% \bfseries for bold,
+% \scshape for small caps,
+% \normalsize, \large, \Large, \LARGE sizes.
+
+% Don't indent paragraphs.
+\setlength\parindent{0em}
+
+% Make lists without bullets and compact spacing
+\renewenvironment{itemize}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{1.5em}
+    \setlength{\itemsep}{0.25em}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0.25em}
+  }
+}{
+  \end{list}
+}
+\setlist[enumerate]{itemsep=0.25em}
+
+\begin{document}
+
+% Place name at left
+{\huge\name}
+
+% Alternatively, print name centered and bold:
+%\centerline{\huge \bf \name}
+
+\bigskip
+
+\begin{minipage}[t]{0.495\textwidth}
+  20 Lower Luton Road\\
+  Wheathampstead\\
+  Hertfordshire\\
+  AL4 8QZ\\
+
+\end{minipage}
+\begin{minipage}[t]{0.495\textwidth}
+    Phone: (+44) 7766 521596\\
+    Email: \href{mailto:samuel.perry89@gmail.com}{samuel.perry89@gmail.com} \\
+    Linked-in: \\\href{https://uk.linkedin.com/in/sam-perry-04245438}{https://uk.linkedin.com/in/sam-perry-04245438}
+\end{minipage}
+
+\section*{\Large Sound and Music Computing MSc \\ \large Statement of Purpose}
+The sound and music computing MSc offers a curriculum that is well suited to
+continue my studies in the area of audio signal processing. I see the course as
+an opportunity to broaden my knowledge of techniques for analysing and
+synthesizing sounds digitally. This would build on my current understanding of
+these techniques that has been developed over the past four years, during my
+time studying at the University of Huddersfield and through working on the
+Analysis and Synthesis team in the IRCAM research institute.\\ 
+My time spent at the IRCAM research institute provided me with a valuable
+insight into the ways that audio research is carried out and I understand that
+the Centre for Digital Music carries out research of a similar nature. For
+example I am already familiar with the Sonic Visualiser program which is not
+dissimilar to the AudioSculpt software which was used extensively during my
+internship at IRCAM. Due to the similarities between the two facilities, I
+feel that the style of study on this course would be a logical step forward
+from the type of work I encountered at IRCAM.\\ 
+In addition to this I also have a reasonable understanding of audio descriptor
+analysis techniques such as pitch and timbre analyses due to research carried
+out on my final year project (see
+\href{http://pezz89.github.io/pysound/index.html}{http://pezz89.github.io/pysound/index.html}
+for details). This would most likely be useful prior knowledge for modules such
+as the Music Analysis and Synthesis modules. \\
+I would also be interested in other module available such as the machine
+learning module, that would give me the opportunity to study a subject I have
+basic knowledge of, but have not had the opportunity to explore in detail. I
+believe this opportunity would be both interesting and useful for my future
+endeavours.  I am also keen to develop my programming ability and continue
+developing my knowledge of languages such as Python, Matlab and C++. Given the
+technical nature of the course, I imagine that my  current knowledge of these
+languages would be beneficial. \\
+Studying on this course would also be an opportunity meet like minded
+individuals and develop professional relationships in the industry I wish to
+pursue a career in. My internship allowed me to network with a range of
+researchers with a variety of specialist subjects and discuss thoughts and
+ideas. I found this extremely beneficial to my understanding of this field of
+research and would enjoy the oppertunity to network in a similar fashion.\\
+I would expect that this course will provide the necessary skills to develop a
+career in DSP engineering or provide a basis for further academic research in
+these fields. On successful completion of this course I would look to either
+further my studies as a PhD candidate or search for a job in commercial DSP or
+general programming.\\
+Overall I believe that I am a candidate that is well suited to the requirements
+of this masters course. Given my previous studies and experience, I am
+confident that I have the skill set and attitude required to complete a course
+such as this.\\
+\newline
+Thank you for your consideration.
+
+% Footer
+\bigskip
+{\small Last updated: \today}
+
+\end{document}
