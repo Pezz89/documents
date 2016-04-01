@@ -1,0 +1,99 @@
+
+\documentclass{scrartcl}
+\usepackage{enumitem}
+\usepackage[british]{babel}
+\usepackage[style=apa, backend=biber]{biblatex}
+\DeclareLanguageMapping{british}{british-apa}
+\usepackage{url}
+\usepackage{float}
+\restylefloat{table}
+\usepackage{perpage}
+\MakePerPage{footnote}
+
+\addbibresource{~/PerryPerrySource/LaTeX/Hud_masters.bib}
+
+\begin{document}
+
+    \title{DSP Assignment 2\\Digital Audio Effects Implementation}
+    \subtitle{Technical Report}
+    \author{Sam Perry\\U1265119}
+    \date{}
+    \maketitle
+
+    \begin{abstract}
+        This report outlines the implementation, testing and evaluation of
+        three real-time audio effects using the dsPIC 30F4013 digital signal
+        processor.  Design choices, system specification, and final results
+        are analysed.\\
+        Design choices are compared to choices made in previous work to outline
+        the changes required to implement such effects outside of
+        unlimited resource systems.\\
+        System specification is compared with alternative chips to understand
+        the quality of the processor in relation to the state of DSP
+        technology.\\
+        Final system performance is then discussed to determine further
+        changes that could be made to improve performance.
+    \end{abstract}
+
+    \section{Background/Literature}
+    \subsection{Digital Signal processors Overview}
+    A digital signal processor (DSP) is form of specialized microprocessor
+    designed specifically for the processing of signals (such as audio signals
+    in this case). When considering the quality of a DSP, there are many
+    technical factors to consider, that contribute to the overall performance
+    of the processor. These include:
+    \begin{itemize}
+        \item Clock speed
+        \item Memory
+        \item Bit depth
+        \item Floating or fixed point calculation
+    \end{itemize}
+
+    In order to understand the specification of the dsPIC in relation to the
+    standard of DSPs available, it will be compared to three other digital signal
+    processors:
+    \begin{itemize}
+        \item Texas Instruments TMS320F2806x
+        \item Freescale 56F8025
+        \item Analog Devices ADSP-2126x
+    \end{itemize}
+    \subsection{Memory}
+    \subsubsection{Flash}
+    \subsubsection{RAM}
+    \subsection{CPU}
+
+
+
+    This section should include:\\
+        The general requirements for digital audio processing systems, DSP
+        processors\\
+        dsPIC Development system\\
+
+    \section{Design/Analysis}
+    This section should include:\\
+        Design of software, in Flowcode or C for artificial reverberation\\
+        User Interface - Input from the switches to select Echo, Reverb, or
+        Chorus effects\\
+        \subsection{Echo}
+        \subsection{Chorus}
+        \subsection{Reverb}
+    \section{Results}
+    The results of real-time system implementation section should include:\\
+        Implementation on dsPIC based system\\
+        Testing and evaluation of the artificial reverberation system\\
+        \subsection{Echo}
+        \subsection{Chorus}
+        \subsection{Reverb}
+        
+    \section{Further Work}
+    The student should discuss the limitations of the system and how it could be developed further
+
+    \section{Conclusions}
+    The conclusion section should include:\\
+        Critical discussion about the system, (did it work? if not, why
+        not?).\\
+        Statement of what the student learned from the exercise.\\
+
+    \printbibliography
+
+\end{document}
