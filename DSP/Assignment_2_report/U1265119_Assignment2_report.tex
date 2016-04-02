@@ -112,7 +112,7 @@
     can execute instructions and store results is critical to the performance
     of the system.
 
-    \paragraph{Clock Speed}
+    \paragraph{Clock Speed}~\\
     Measured in cycles per second (Hz), the clock speed defines the number of
     calculations that can be performed per second. A higher clock speed
     indicates a higher number of calculations performed per second. This is
@@ -123,7 +123,7 @@
     to an interupt before the processor has been able to complete them. This
     can create in artefacts in output audio and create unexpected results.
 
-    \paragraph{Architecture}
+    \paragraph{Architecture}~\\
     The CPU architecture refers to the design of memory units and bus layouts.
     The most common designs are von Neumann and Harvard architectures. The von
     Neumann architecture combines program and memory data, allowing only serial
@@ -137,11 +137,17 @@
     ability to handle audio signals. These will determine the quality of audio
     manipulation and affect the computational requirements for the system.
 
-    \subsection{Samplerate}
-    \subsection{Bit Depth}
     \subsection{A/D \& D/A Converters}
+    A/D and D/A converters are required for audio input and output. 
+    
+    \subsection{Samplerate}
+    The samplerate defines the frequency at which a measurement will be taken
+    from the input audio. This is significant due to the quantity of
+    information returned from the A/D converter for processing. Higher sample
+    rates generates more measurements per second and thus requires more values
+    to be computed per second.
 
-
+    \subsection{Bit Depth}
 
     This section should include:\\
         The general requirements for digital audio processing systems, DSP
