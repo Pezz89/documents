@@ -10,7 +10,7 @@
 \usepackage{perpage}
 \MakePerPage{footnote}
 
-\addbibresource{~/PerryPerrySource/LaTeX/Hud_masters.bib}
+\addbibresource{~/PerryPerrySource/LaTeX/DSP_Bibliography.bib}
 
 \begin{document}
 
@@ -35,18 +35,23 @@
         changes that could be made to improve performance.
     \end{abstract}
 
-    \section{Background/Literature}
-    \subsection{Digital Signal processors Overview}
+    \section{Background/Literature - Digital Signal Processor/Microcontroller
+    Overview}
     A digital signal processor (DSP) is form of specialized microprocessor
     designed specifically for the processing of signals (such as audio signals
-    in this case). When considering the quality of a DSP, there are many
-    technical factors to consider, that contribute to the overall performance
-    of the processor. These include:
+    in this case).~\parencite[p.11-12]{libtak2006ieh}. The DSP is used as part
+    of a microcontroller that provides an interface for components such as
+    Memory, data IO and peripherals that form the signal processing system.
+    When considering the quality of a DSP system, there are many component
+    specifications to consider, that contribute to the overall performance of
+    the system. These include:
     \begin{itemize}
-        \item Clock speed
+        \item CPU
         \item Memory
+        \item System bus
         \item Bit depth
-        \item Floating or fixed point calculation
+        \item Samplerate
+        \item D/A \& A/D converters
     \end{itemize}
 
     In order to understand the specification of the dsPIC in relation to the
@@ -57,10 +62,84 @@
         \item Freescale 56F8025
         \item Analog Devices ADSP-2126x
     \end{itemize}
-    \subsection{Memory}
-    \subsubsection{Flash}
-    \subsubsection{RAM}
-    \subsection{CPU}
+
+    \subsection{General Computing Factors}
+    Factors such as memory and CPU speed are factors that affect all computing
+    systems. These address the systems ability to perform calculations and
+    handle data.
+
+    \subsubsection{Memory}
+    There are two types of memory that constitute the total memory of a
+    microcontroller: program memory and data memory.
+
+    \paragraph{Program Memory}~\\
+    Most modern microcontrollers use flash memory for the storage of code
+    executed at runtime. This is known as ROM (read-only memory) and may be
+    reffered to as the ``program memory''. The size of this memory determines
+    the amount of code that can be stored at any one time in the processor.
+    This has implications with regaurds to the complexity of the program as
+    insufficient program memory will limit the number of instructions that can
+    be used for programming.
+
+    \paragraph{Data Memory}~\\
+    RAM (Random-access memory) is volatile memory that is used for storing data
+    used when executing instructions. Unlike ROM memory, RAM can be both read
+    from and written to at runtime and is used for the storage of data that can
+    change as instructions are executed. This is used for the storage of data
+    such as audio buffer and parameter variables. The amount of RAM available
+    determines the maximum size of data such as buffers for audio delays. The
+    speed of the RAM is also integral to the overall performance of the system
+    as sufficient speed is required to read and write buffers as instructions
+    are executed by the CPU (see section \ref{CPU})
+
+    \subsubsection{System Bus}
+    The system bus handles data IO between components such as the CPU
+    and memory. For performance comparisson, the system bus's data width is
+    used to determine the maximum amount of memory that the CPU is able to
+    write directly to memory. 
+    For example a 16BIT system can support a maximum of $2^{16}$ memory
+    addresses. This equals a maximum memory size of 64Kb of memory directly
+    accessible by the CPU. However, a 32BIT system can support $2^{32}$ memory
+    addresses which results in ~4GB of potential memory.
+    When analysing specifications of DSP systems it is important to seperate
+    the processing architechuture from the bit depth of the DSP components as
+    they affect different aspects of the system.
+
+
+    \subsubsection{CPU}\label{CPU}
+    The CPU (Central Processing Unit) is the component that executes
+    instructions and performs calculations on data. The speed at which the CPU
+    can execute instructions and store results is critical to the performance
+    of the system.
+
+    \paragraph{Clock Speed}
+    Measured in cycles per second (Hz), the clock speed defines the number of
+    calculations that can be performed per second. A higher clock speed
+    indicates a higher number of calculations performed per second. This is
+    particularly significant in realtime DSP application as a sufficient number
+    of calculations must be performed in a set period of time in order to
+    process audio as quickly as it is provided to the system.  If the clock
+    speed is not sufficient, this may result in instructions being missed due
+    to an interupt before the processor has been able to complete them. This
+    can create in artefacts in output audio and create unexpected results.
+
+    \paragraph{Architecture}
+    The CPU architecture refers to the design of memory units and bus layouts.
+    The most common designs are von Neumann and Harvard architectures. The von
+    Neumann architecture combines program and memory data, allowing only serial
+    access of memory. By seperrating program and data memory, the Harvard
+    architecture allows for simulataneous access of data and program memory,
+    making it the more efficient of the two designs.
+    
+
+    \section{DSP Specific Factors}
+    DSP specific factors relate to components specically affecting the systems
+    ability to handle audio signals. These will determine the quality of audio
+    manipulation and affect the computational requirements for the system.
+
+    \subsection{Samplerate}
+    \subsection{Bit Depth}
+    \subsection{A/D \& D/A Converters}
 
 
 
@@ -74,9 +153,14 @@
         Design of software, in Flowcode or C for artificial reverberation\\
         User Interface - Input from the switches to select Echo, Reverb, or
         Chorus effects\\
+
+        Compare to assignment 1\\
         \subsection{Echo}
+        Assignment 1: Variable tap FIR/IIR combination
         \subsection{Chorus}
+        Assignment 1: Full chorus with single varying tap driven by sine wave
         \subsection{Reverb}
+        Moorer reverb delay structure comprising multiple styles of filter
     \section{Results}
     The results of real-time system implementation section should include:\\
         Implementation on dsPIC based system\\
@@ -90,6 +174,7 @@
 
     \section{Conclusions}
     The conclusion section should include:\\
+    dsPIC30F4013 not fit for the purpose of this task.
         Critical discussion about the system, (did it work? if not, why
         not?).\\
         Statement of what the student learned from the exercise.\\
