@@ -9,13 +9,25 @@
 \restylefloat{table}
 \usepackage{perpage}
 \MakePerPage{footnote}
+\usepackage{abstract}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{blindtext}
+\setkomafont{disposition}{\normalfont\bfseries}
+
 
 \addbibresource{~/PerryPerrySource/LaTeX/DSP_Bibliography.bib}
 
-\begin{document}
+\DeclareCiteCommand{\citeyearpar}
+    {}
+    {\mkbibparens{\bibhyperref{\printdate}}}
+    {\multicitedelim}
+    {}
 
+\begin{document}
     \title{DSP Assignment 2\\Digital Audio Effects Implementation}
-    \subtitle{Technical Report}
+    \subtitle{\LARGE{Technical Report}}
     \author{Sam Perry\\U1265119}
     \date{}
     \maketitle
@@ -35,7 +47,7 @@
         changes that could be made to improve performance.
     \end{abstract}
 
-    \section{Background/Literature - Digital Signal Processor/Microcontroller
+    \section{Background/Literature:\\Digital Signal Processor/Microcontroller
     Overview}
     A digital signal processor (DSP) is form of specialized microprocessor
     designed specifically for the processing of signals (such as audio signals
@@ -82,7 +94,7 @@
     be used for programming.
 
     \paragraph{Data Memory}~\\
-    RAM (Random-access memory) is volatile memory that is used for storing data
+    RAM (random-access memory) is volatile memory that is used for storing data
     used when executing instructions. Unlike ROM memory, RAM can be both read
     from and written to at runtime and is used for the storage of data that can
     change as instructions are executed. This is used for the storage of data
@@ -104,7 +116,6 @@
     When analysing specifications of DSP systems it is important to seperate
     the processing architechuture from the bit depth of the DSP components as
     they affect different aspects of the system.
-
 
     \subsubsection{CPU}\label{CPU}
     The CPU (Central Processing Unit) is the component that executes
@@ -131,14 +142,19 @@
     architecture allows for simulataneous access of data and program memory,
     making it the more efficient of the two designs.
     
-
     \section{DSP Specific Factors}
     DSP specific factors relate to components specically affecting the systems
     ability to handle audio signals. These will determine the quality of audio
     manipulation and affect the computational requirements for the system.
 
     \subsection{A/D \& D/A Converters}
-    A/D and D/A converters are required for audio input and output. 
+    A/D and D/A converters are required for audio input and output. Depending
+    on the microcontroller used, these may intergrated in the main circuit
+    board or available as peripherals that can be attached via ports (as is the
+    case for the PIC24 board used). The quality and accuracy of these
+    converters will clearly have an effect on the audio output and using
+    converters that can perform as transparently as possible is essential for a
+    high quality system.
     
     \subsection{Samplerate}
     The samplerate defines the frequency at which a measurement will be taken
@@ -148,25 +164,60 @@
     to be computed per second.
 
     \subsection{Bit Depth}
-
-    This section should include:\\
-        The general requirements for digital audio processing systems, DSP
-        processors\\
-        dsPIC Development system\\
+    The audio bit depth determines the accuracy to which amplitudes can be
+    differentiated. Higher bit depths result in a higher dynamic range in the
+    signal. This has implications for the converters as higher bit rates
+    require higher accuracy in generating values for each sample.
 
     \section{Design/Analysis}
-    This section should include:\\
-        Design of software, in Flowcode or C for artificial reverberation\\
-        User Interface - Input from the switches to select Echo, Reverb, or
-        Chorus effects\\
+    Effect implementation wase largely dicatated by the limitations of the
+    dsPIC. As the device had sever memory and processing limitations, it was
+    not possible to create effects to the standard of the first assignment. As
+    a result effects were created to emulate the perceptual effect of an echo,
+    reverb and chorus under these limitations.
 
-        Compare to assignment 1\\
-        \subsection{Echo}
-        Assignment 1: Variable tap FIR/IIR combination
-        \subsection{Chorus}
-        Assignment 1: Full chorus with single varying tap driven by sine wave
-        \subsection{Reverb}
-        Moorer reverb delay structure comprising multiple styles of filter
+    \subsection{Echo}
+    The echo was implemented using a single tap FIR filter. This was intended
+    to maximise available memory for the delay time. Through stripping out all
+    unnessesary features, a maximum delay size of 700 samples was acheived with
+    the addition of two UI switches that could be used for increasing and
+    decreasing delay size at runtime.
+    At a samplerate of 8Khz, this allowed for a single delay of \textgreater50ms defined
+    as the minimum for the definition of an echo
+    by Z{\"o}lzer~\citeyearpar[p.]{zolzer2011dafx}
+
+    \subsection{Chorus}
+    To emulate the multiple instrument effect created by a chorus, three delays
+    of variable size were used. This created 3 phase shifted versions of the
+    original signal which creates the perception of multiple instruments. The
+    delay time modulation was not possible due to the computational power
+    required to implement this for modulating a delay time on a sample by
+    sample basis.
+
+    \subsection{Reverb}
+    The reverb implementation involved a combination of an FIR and IIR filter
+    as defined by Z{\"o}lzer~\citeyearpar[p.]{zolzer2011dafx}. This performed
+    poorly when compared to the moorer reverb structure used in assignment 1,
+    however the complexity of such a structure would require superior
+    performance in almost all aspects of the system.
+    The design used created a delayed echo that could act as a crude reverb.
+
+    \subsection{User Interface}
+    The UI was designed using eight switches and the LCD to create a
+    navigatable menu that can be used for the section of effect, effect
+    parameters and voculme control. The effect parameter menu is able to update
+    it's items dynamically based on the active effects. The desired effect can
+    then be selected by cycling through using repeated presses of the effects
+    menu button. Parameter varaibles can then be increased and decreased for
+    the selected effect using two switches.\\
+    It was not possible to use the UI in conjunction with any actual audio
+    effect as proper threading of the menu alongside the DSP process was not
+    possible. Having the menu run in the same thread as signal processing
+    forced menu logic to complete at signal rate. When this did not occur this
+    would create unexpected results and graphical error in the LCD as logic was
+    not completed fully. As a result, the project presented is a prototype to
+    demonstrate possibilities given a capable system.
+
     \section{Results}
     The results of real-time system implementation section should include:\\
         Implementation on dsPIC based system\\
