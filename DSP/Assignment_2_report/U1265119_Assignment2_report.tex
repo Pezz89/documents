@@ -1,5 +1,5 @@
 
-\documentclass{scrartcl}
+\documentclass[titlepage]{scrartcl}
 \usepackage{enumitem}
 \usepackage[british]{babel}
 \usepackage[style=apa, backend=biber]{biblatex}
@@ -10,6 +10,7 @@
 \usepackage{perpage}
 \MakePerPage{footnote}
 \usepackage{abstract}
+\usepackage{graphicx}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -17,7 +18,25 @@
 \setkomafont{disposition}{\normalfont\bfseries}
 
 
+\graphicspath{
+    {./resources/},
+}
 \addbibresource{~/PerryPerrySource/LaTeX/DSP_Bibliography.bib}
+
+\newsavebox{\abstractbox}
+\renewenvironment{abstract}
+  {\begin{lrbox}{0}\begin{minipage}{\textwidth}
+   \begin{center}\normalfont\sectfont\abstractname\end{center}\quotation}
+  {\endquotation\end{minipage}\end{lrbox}%
+   \global\setbox\abstractbox=\box0 }
+
+\usepackage{etoolbox}
+\makeatletter
+\expandafter\patchcmd\csname\string\maketitle\endcsname
+  {\vskip\z@\@plus3fill}
+  {\vskip\z@\@plus2fill\box\abstractbox\vskip\z@\@plus1fill}
+  {}{}
+\makeatother
 
 \DeclareCiteCommand{\citeyearpar}
     {}
@@ -30,22 +49,24 @@
     \subtitle{\LARGE{Technical Report}}
     \author{Sam Perry\\U1265119}
     \date{}
-    \maketitle
 
     \begin{abstract}
         This report outlines the implementation, testing and evaluation of
         three real-time audio effects using the dsPIC 30F4013 digital signal
         processor.  Design choices, system specification, and final results
         are analysed.\\
-        Design choices are compared to choices made in previous work to outline
-        the changes required to implement such effects outside of
-        unlimited resource systems.\\
         System specification is compared with alternative chips to understand
         the quality of the processor in relation to the state of DSP
         technology.\\
+        Design choices are compared to choices made in previous work to outline
+        the changes required to implement such effects outside of
+        unlimited resource systems.\\
         Final system performance is then discussed to determine further
         changes that could be made to improve performance.
     \end{abstract}
+
+    \maketitle
+
 
     \section{Background/Literature:\\Digital Signal Processor/Microcontroller
     Overview}
@@ -141,7 +162,15 @@
     access of memory. By seperrating program and data memory, the Harvard
     architecture allows for simulataneous access of data and program memory,
     making it the more efficient of the two designs.
-    
+    \begin{figure}[H]
+        \caption{von Neumann CPU architecture}
+        \makebox[\textwidth]{\includegraphics[width=0.75\textwidth]{neumann}}
+    \end{figure}
+    \begin{figure}[H]
+        \caption{Harvard CPU architecture}
+        \makebox[\textwidth]{\includegraphics[width=0.75\textwidth]{harvard}}
+    \end{figure}
+    \newpage 
     \section{DSP Specific Factors}
     DSP specific factors relate to components specically affecting the systems
     ability to handle audio signals. These will determine the quality of audio
@@ -162,6 +191,15 @@
     information returned from the A/D converter for processing. Higher sample
     rates generates more measurements per second and thus requires more values
     to be computed per second.
+    \begin{figure}[H]
+        \caption{Illustration of sine wave sampling}
+        \makebox[\textwidth]{\includegraphics[width=\textwidth]{quantization}}
+    \end{figure}
+    \begin{figure}[H]
+        \caption{Illustration of quantization error resulting from a low sample
+        rate.}
+        \makebox[\textwidth]{\includegraphics[width=\textwidth]{sampling_error}}
+    \end{figure}
 
     \subsection{Bit Depth}
     The audio bit depth determines the accuracy to which amplitudes can be
@@ -222,9 +260,16 @@
     The results of real-time system implementation section should include:\\
         Implementation on dsPIC based system\\
         Testing and evaluation of the artificial reverberation system\\
+        Expected frequecy range based on samplerate
         \subsection{Echo}
+        Maxmum  achieved.
+        Audio sound quality acheived
         \subsection{Chorus}
+        Maximum delay buffer size
+        Audio sound quality acheived
         \subsection{Reverb}
+        Audio sound quality acheived
+
         
     \section{Further Work}
     The student should discuss the limitations of the system and how it could be developed further
