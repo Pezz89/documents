@@ -113,7 +113,7 @@
     the amount of code that can be stored at any one time in the system.
     This has implications with regards to the complexity of the program, as
     insufficient program memory will limit the number of instructions that can
-    be used for programming.
+    be used for programming.~\parencite[p.317]{raf2014fdlm}
 
     \begin{table}[H]
     \centering
@@ -142,7 +142,8 @@
     used when executing instructions. Unlike ROM memory, RAM can be both read
     from and written to at runtime and is used for the storage of data that can
     change as instructions are executed. This is used for the storage of data
-    such as audio buffer and parameter variables. The amount of RAM available
+    such as audio buffer and parameter
+    variables.~\parencite[p.317]{raf2014fdlm} The amount of RAM available
     determines the maximum size of data such as buffers for audio delays. The
     speed of the RAM is also integral to the overall performance of the system,
     as sufficient speed is required to read and write buffers as instructions
@@ -172,11 +173,13 @@
     The system bus handles data IO between components such as the CPU
     and memory. For performance comparisson, the system bus's data width is
     used to determine the maximum amount of memory that the CPU is able to
-    write to directly. 
+    write to directly.~\parencite[p.318]{raf2014fdlm}
     For example a 16BIT system can support a maximum of $2^{16}$ memory
     addresses. This equals a maximum memory size of 64Kb of memory directly
     accessible by the CPU. However, a 32BIT system can support $2^{32}$ memory
-    addresses which results in {\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}4GB of potential memory.
+    addresses which results in
+    {\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}4GB of potential
+    memory.~\parencite[p.34]{sd2006mfes}
     When analysing specifications of DSP systems it is important to seperate
     the processing architechuture from the bit depth of the DSP components as
     they affect different aspects of the system.
@@ -215,7 +218,8 @@
     process audio as quickly as it is provided to the system.  If the clock
     speed is not sufficient, this may result in instructions being missed due
     to an interupt before the processor has been able to complete them. This
-    can create in artefacts in output audio and create unexpected results.
+    can create in artefacts in output audio and create unexpected
+    results.~\parencite[p.34]{sd2006mfes}
 
     It should be noted that this is not an entirely accurate measurement for
     speed as different manufacturers have different definitions of a
@@ -235,7 +239,7 @@
         ADSP-2126          & 200MHz             & 1090\\
     \end{tabular}
     \end{table}
-    From this it can be seen that the dsPIC and 56F8025 perform significantly
+    From this, it can be seen that the dsPIC and 56F8025 perform significantly
     worse than the ADSP. This has a negative impact on samplerate as it must be
     lowered to account for the lack of processing power. A sample rate of 8Khz
     was used as opposed to the 44.1Khz samplerate that would be feasable on the
@@ -274,7 +278,7 @@
     performance. Variations of this have been used in all examples.
 
     \section{DSP Specific Factors}
-    DSP specific factors relate to components specically affecting the systems
+    DSP specific factors relate to components specically affecting the system's
     ability to handle audio signals. These will determine the quality of audio
     manipulation and affect the computational requirements for the system. This
     section briefly covers the computational impact of the DSP specific
@@ -282,18 +286,18 @@
 
     \subsection{A/D \& D/A Converters}
     A/D and D/A converters are required for audio input and output. Depending
-    on the microcontroller used, these may intergrated in the main circuit
+    on the microcontroller used, these may be integrated in the main circuit
     board or available as peripherals that can be attached via ports (as is the
     case for the PIC24 board used). The quality and accuracy of these
     converters will clearly have an effect on the audio output and using
     converters that can perform as transparently as possible is essential for a
-    high quality system.
+    high quality system.~\parencite[p.147-152]{kadis2012sosr}
     
     \subsubsection{Samplerate}
     The samplerate defines the frequency at which a measurement will be taken
     from the input audio. This is significant due to the quantity of
     information returned from the A/D converter for processing. Higher sample
-    rates generates more measurements per second and thus requires more values
+    rates generate more measurements per second and thus require more values
     to be computed per second as discussed in section \ref{CPU}
     \begin{figure}[H]
         \caption{Illustration of sine wave sampling}
@@ -309,13 +313,13 @@
     The audio bit depth determines the accuracy to which amplitudes can be
     differentiated. Higher bit depths result in a higher dynamic range in the
     signal. This has implications for the converters as higher bit rates
-    require higher accuracy in generating values for each sample.
+    require higher accuracy in generating values for each sample.~\parencite[p.143-145]{kadis2012sosr}
 
     \section{Design/Analysis}\label{design}
     Effect implementation wase largely dicatated by the limitations of the
-    dsPIC. As the device had sever memory and processing limitations, it was
+    dsPIC. As the device had severe memory and processing limitations, it was
     not possible to create effects to the standard of the first assignment. As
-    a result effects were created to emulate the perceptual effect of an echo,
+    a result, effects were created to emulate the perceptual effect of an echo,
     reverb and chorus under these limitations.
 
     \subsection{Echo}
@@ -335,14 +339,14 @@
 
     \subsection{Chorus}
     To emulate the multiple instrument effect created by a chorus, three delays
-    of variable size were used. This created 3 phase shifted versions of the
-    original signal which creates the perception of multiple instruments. The
+    of variable size were used. This created three phase shifted versions of the
+    original signal which created the perception of multiple instruments. The
     delay time modulation was not possible due to the computational power
     required to implement this for modulating a delay time on a sample by
     sample basis.
 
     \subsection{Reverb}
-    The reverb implementation involved a combination of an FIR and IIR filter
+    The reverb implementation involved a combination of an FIR and IIR filter,
     as defined by Z{\"o}lzer~\citeyearpar{zolzer2011dafx}. This performed
     poorly when compared to the moorer reverb structure used in assignment 1,
     however the complexity of such a structure would require superior
@@ -352,10 +356,10 @@
     \subsection{User Interface}
     The UI was designed using eight switches and the LCD to create a
     navigatable menu that can be used for the selection of effect, effect
-    parameters and voculme control. The effect parameter menu is able to update
+    parameters and volume control. The effect parameter menu is able to update
     it's items dynamically based on the active effects. The desired effect can
-    then be selected by cycling through using repeated presses of the effects
-    menu button. Parameter varaibles can then be increased and decreased for
+    then be selected by cycling through, using repeated presses of the effects
+    menu button. Parameter variables can then be increased and decreased for
     the selected effect using two switches.\\
     It was not possible to use the UI in conjunction with any actual audio
     effect as proper threading of the menu alongside the DSP process was not
@@ -367,45 +371,55 @@
 
     \section{Results}
     Overall, the results produced were not of a high standard. The low signal
-    to noise ratio, low sample rate and over-simplicity of designs made it
-    impossible to create results useable in a professional context. With a
+    to noise ratio, low sample rate and over-simplification of designs made it
+    impossible to create results usable in a professional context. With a
     sample rate of 8Khz, a cutoff sampling frequency of 4000khz was created.
-    this resulted in a telephony frequency response that removed higher
-    frequencies. poor converters added significant noise to the output which
+    This resulted in a telephony frequency response that removed higher
+    frequencies. Poor converters added significant noise to the output which
     further degraded results. However, steps were taken to create the best
     quality outcome with the resources available.
+
         \subsection{Echo}
-        A maximum single tap delay of 750 samples was acheived through the
-        stripping of all unnessesary composnents. Without a user interface,
+        A maximum single tap delay of 750 samples was achieved through the
+        stripping of all unnecessary components. Without a visual UI,
         this was controlled through the use of two switches that
         incremented/decremented the delay in values of 10 samples every 100ms. 
         The lack of a feedback loop resulted in a very simplistic delay with
         equally simplistic results in terms of perception. A feedback was not
         implemented to differentiate this from the reverb design.
+
         \subsection{Chorus}
         The implementation provided a perceptually similar alternative to the
-        unfeasable modulated delay line design from the previous assignment.  
+        infeasible modulated delay line design from the previous assignment.  
         Each delay can be set to up to a maximum delay time of 250 samples.
         This allows for manual shifting of phases to taste. Overall this
         results in a functional alternative at the cost of perceptual quality.
-        \subsection{Reverb}
-        The reverb 
 
+        \subsection{Reverb}
+        A crude slapback reverb was created using an FIR/IIR filter
+        combination. The result was a short reverb tail with decaying
+        repetitions of the dry sample. This would have been vastly improved
+        with the addition of further parallel comb filters or all pass filters.
         
     \section{Further Work}
-    The student should discuss the limitations of the system and how it could be developed further
-    Use of C as opposed to Flowcode
-    Faster system with more memory
-    Higher samplerate
-
+    Building on skills learnt in this project, results could be improved
+    significantly through the use of C code directly, allowing for greater
+    control over the underlying logic than is possible through Flowcode. This
+    would also offer greater scope for design as it would no longer be limited
+    to the relatively limited Flowcode macros.\\
+    The main improvement would be to use a more capable system. It is clear
+    that the limitations of the system have impeded the quality of results to
+    an unreasonable degree. 
 
     \section{Conclusions}
-    The conclusion section should include:\\
-    dsPIC30F4013 not fit for the purpose of this task.
-        Critical discussion about the system, (did it work? if not, why
-        not?).\\
-        Statement of what the student learned from the exercise.\\
-
+    Overall this project has offered insight into the performance issues and
+    limitations involved when programming for integrated systems of finite
+    resources. It has also highlighted the limitations of real-time processing
+    as opposed to offline processing.\\
+    When planning a hardware system it is clear that the system specification
+    and design of it's code must be as efficient as possible in order to
+    produce the quality of results that are possible on unlimited resource
+    systems such as a standard computer.
     \printbibliography
 
 \end{document}
