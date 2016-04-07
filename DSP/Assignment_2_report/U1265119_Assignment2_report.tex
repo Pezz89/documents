@@ -61,8 +61,8 @@
         the quality of the processor in relation to the state of DSP
         technology.\\
         Design choices are compared to choices made in previous work to outline
-        the changes required to implement such effects outside of
-        unlimited resource systems.\\
+        the changes required to implement such effects outside unlimited
+        resource systems.\\
         Final system performance is then discussed to determine further
         changes that could be made to improve performance.
     \end{abstract}
@@ -142,7 +142,7 @@
     used when executing instructions. Unlike ROM memory, RAM can be both read
     from and written to at runtime and is used for the storage of data that can
     change as instructions are executed. This is used for the storage of data
-    such as audio buffer and parameter
+    such as audio buffers and parameter
     variables.~\parencite[p.317]{raf2014fdlm} The amount of RAM available
     determines the maximum size of data such as buffers for audio delays. The
     speed of the RAM is also integral to the overall performance of the system,
@@ -179,10 +179,10 @@
     accessible by the CPU. However, a 32BIT system can support $2^{32}$ memory
     addresses which results in
     {\raise.17ex\hbox{$\scriptstyle\mathtt{\sim}$}}4GB of potential
-    memory.~\parencite[p.34]{sd2006mfes}
-    When analysing specifications of DSP systems it is important to seperate
-    the processing architechuture from the bit depth of the DSP components as
-    they affect different aspects of the system.
+    memory.~\parencite[p.34]{sd2006mfes}\\
+    (When analysing specifications of DSP systems it is important not to
+    confuse the processing architechuture with the bit depth of the DSP
+    components as they affect different aspects of the system.)
 
     \begin{table}[H]
     \centering
@@ -218,8 +218,7 @@
     process audio as quickly as it is provided to the system.  If the clock
     speed is not sufficient, this may result in instructions being missed due
     to an interupt before the processor has been able to complete them. This
-    can create in artefacts in output audio and create unexpected
-    results.~\parencite[p.34]{sd2006mfes}
+    can create in artefacts in output audio.~\parencite[p.34]{sd2006mfes}
 
     It should be noted that this is not an entirely accurate measurement for
     speed as different manufacturers have different definitions of a
@@ -253,11 +252,11 @@
     architecture allows for simulataneous access of data and program memory,
     making it the more efficient of the two designs.~\parencite[p.320-321]{raf2014fdlm}
     \begin{figure}[H]
-        \caption{von Neumann CPU architecture}
+        \caption{von Neumann CPU architecture~\parencite[p.320]{raf2014fdlm}}
         \makebox[\textwidth]{\includegraphics[width=0.75\textwidth]{neumann}}
     \end{figure}
     \begin{figure}[H]
-        \caption{Harvard CPU architecture}
+        \caption{Harvard CPU architecture~\parencite[p.321]{raf2014fdlm}}
         \makebox[\textwidth]{\includegraphics[width=0.75\textwidth]{harvard}}
     \end{figure}
 
@@ -300,12 +299,12 @@
     rates generate more measurements per second and thus require more values
     to be computed per second as discussed in section \ref{CPU}
     \begin{figure}[H]
-        \caption{Illustration of sine wave sampling}
+        \caption{Illustration of sine wave sampling~\parencite[p.140]{kadis2012sosr}}
         \makebox[\textwidth]{\includegraphics[width=\textwidth]{quantization}}
     \end{figure}
     \begin{figure}[H]
         \caption{Illustration of quantization error resulting from a low sample
-        rate.}
+        rate.~\parencite[p.146]{kadis2012sosr}}
         \makebox[\textwidth]{\includegraphics[width=\textwidth]{sampling_error}}
     \end{figure}
 
@@ -316,7 +315,7 @@
     require higher accuracy in generating values for each sample.~\parencite[p.143-145]{kadis2012sosr}
 
     \section{Design/Analysis}\label{design}
-    Effect implementation wase largely dicatated by the limitations of the
+    Effect implementation was largely dicatated by the limitations of the
     dsPIC. As the device had severe memory and processing limitations, it was
     not possible to create effects to the standard of the first assignment. As
     a result, effects were created to emulate the perceptual effect of an echo,
@@ -338,12 +337,11 @@
     \end{figure}
 
     \subsection{Chorus}
-    To emulate the multiple instrument effect created by a chorus, three delays
-    of variable size were used. This created three phase shifted versions of the
-    original signal which created the perception of multiple instruments. The
-    delay time modulation was not possible due to the computational power
-    required to implement this for modulating a delay time on a sample by
-    sample basis.
+    Three delays of variable size were used to emulate the multi-instrument
+    effect created by a chorus. This created three phase shifted versions of
+    the original signal which created the perception of multiple instruments.
+    The delay time modulation was not possible due to the computational power
+    required to implement a modulated delay line on a sample by sample basis.
 
     \subsection{Reverb}
     The reverb implementation involved a combination of an FIR and IIR filter,
@@ -375,9 +373,9 @@
     impossible to create results usable in a professional context. With a
     sample rate of 8Khz, a cutoff sampling frequency of 4000khz was created.
     This resulted in a telephony frequency response that removed higher
-    frequencies. Poor converters added significant noise to the output which
-    further degraded results. However, steps were taken to create the best
-    quality outcome with the resources available.
+    frequencies due to the low nyquist rate. Poor converters added significant
+    noise to the output which further degraded results. However, steps were
+    taken to create the best quality outcome with the resources available.
 
         \subsection{Echo}
         A maximum single tap delay of 750 samples was achieved through the
