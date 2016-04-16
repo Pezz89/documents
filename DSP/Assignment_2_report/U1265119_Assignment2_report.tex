@@ -89,13 +89,13 @@
         \item D/A \& A/D converters
     \end{itemize}
 
-    In order to understand the specification of the dsPIC in relation to the
-    standard of DSPs available, it will be compared to three other digital signal
-    processors:
+    In order to understand the specification of the
+    dsPIC~\parencite{mt2004dspic} in relation to the standard of DSPs
+    available, it will be compared to three other digital signal processors:
     \begin{itemize}
-        \item Texas Instruments TMS320F2806
-        \item Freescale 56F8025
-        \item Analog Devices ADSP-2126
+        \item Texas Instruments TMS320F2806~\parencite{ti2016pm}
+        \item Freescale 56F8025~\parencite{fs2006dsc}
+        \item Analog Devices ADSP-2126~\parencite{ad2012adsp}
     \end{itemize}
 
     \subsection{General Computing Factors}
@@ -217,8 +217,8 @@
     of calculations must be performed in a set period of time in order to
     process audio as quickly as it is provided to the system.  If the clock
     speed is not sufficient, this may result in instructions being missed due
-    to an interupt before the processor has been able to complete them. This
-    can create in artefacts in output audio.~\parencite[p.34]{sd2006mfes}
+    to an interrupt before the processor has been able to complete them. This
+    can create artefacts in output audio.~\parencite[p.34]{sd2006mfes}\\
 
     It should be noted that this is not an entirely accurate measurement for
     speed as different manufacturers have different definitions of a
@@ -277,7 +277,7 @@
     performance. Variations of this have been used in all examples.
 
     \section{DSP Specific Factors}
-    DSP specific factors relate to components specically affecting the system's
+    DSP specific factors relate to components specifically affecting the system's
     ability to handle audio signals. These will determine the quality of audio
     manipulation and affect the computational requirements for the system. This
     section briefly covers the computational impact of the DSP specific
@@ -360,11 +360,10 @@
     menu button. Parameter variables can then be increased and decreased for
     the selected effect using two switches.\\
     It was not possible to use the UI in conjunction with any actual audio
-    effect as proper threading of the menu alongside the DSP process was not
-    possible. Having the menu run in the same thread as signal processing
-    forced menu logic to complete at signal rate. When this did not occur this
-    would create unexpected results and graphical error in the LCD as logic was
-    not completed fully. As a result, the project presented is a prototype to
+    effect as the UI would need to be processed after any audio effects. in
+    practice this caused problems as the program did not always have time to
+    complete UI logic before the interupt, causing graphical errors and
+    unexpected results. As a result, the project presented is a prototype to
     demonstrate possibilities given a capable system.
 
     \section{Results}
@@ -386,18 +385,35 @@
         equally simplistic results in terms of perception. A feedback was not
         implemented to differentiate this from the reverb design.
 
+
         \subsection{Chorus}
         The implementation provided a perceptually similar alternative to the
-        infeasible modulated delay line design from the previous assignment.  
+        infeasible modulated delay line design from the previous assignment.
         Each delay can be set to up to a maximum delay time of 250 samples.
         This allows for manual shifting of phases to taste. Overall this
         results in a functional alternative at the cost of perceptual quality.
+        Through the use of a spectrogram, it can be seen in figure
+        \ref{fig:cho_spec} that the signal is clearly noisy and distorted with
+        harmonics produced far above the nyquist rate. This is most likely due
+        to the poor converter performance
+        \begin{figure}[H]
+            \caption{Chorus spectrogram displaying distortion}
+            \makebox[\textwidth]{\includegraphics[width=\textwidth]{Chorus_spectrogram}}
+            \label{fig:cho_spec}
+        \end{figure}
 
         \subsection{Reverb}
         A crude slapback reverb was created using an FIR/IIR filter
         combination. The result was a short reverb tail with decaying
         repetitions of the dry sample. This would have been vastly improved
         with the addition of further parallel comb filters or all pass filters.
+        A clear decaying echo can be see in figure \ref{fig:rev_wav}
+
+        \begin{figure}[H]
+            \caption{Reverb waveform}
+            \makebox[\textwidth]{\includegraphics[width=\textwidth]{Click_reverb_waveform}}
+            \label{fig:rev_wav}
+        \end{figure}
         
     \section{Further Work}
     Building on skills learnt in this project, results could be improved

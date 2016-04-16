@@ -1,0 +1,18 @@
+Notes for Essay:
+
+Systems:
+
+- Use of electronics for the creation of "systems":
+
+ why this is interesting for composers?
+     The use of "sonification" in computer music allows for the bypassing of
+     symbolic musical notation, instead opting to drive musical events
+     through use of other data types (such as arbritrary weather information
+     for example)
+     This allows composers to distance there own discourse from the creation
+     of music, relinquishing control to the data to greater degrees than is
+     easily acheiveable through acoustic music.~\cite[p.129]{mclaughlin2011dsma}
+
+- Not bound by the limitations of human performance or the timbres of
+traditional instruments~\cite[p.351]{holmes2012eaem}
+
