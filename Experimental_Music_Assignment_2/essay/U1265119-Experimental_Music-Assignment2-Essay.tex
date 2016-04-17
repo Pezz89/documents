@@ -1,0 +1,90 @@
+\documentclass[titlepage]{scrartcl}
+\usepackage{enumitem}
+\usepackage[british]{babel}
+\usepackage[style=apa, backend=biber]{biblatex}
+\DeclareLanguageMapping{british}{british-apa}
+\usepackage{url}
+\usepackage{float}
+\restylefloat{table}
+\usepackage{perpage}
+\MakePerPage{footnote}
+\usepackage{abstract}
+\usepackage{graphicx}
+% Create hyperlinks in bibliography
+\usepackage{hyperref}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{blindtext}
+\setkomafont{disposition}{\normalfont\bfseries}
+
+
+\graphicspath{
+    {./resources/},
+}
+\addbibresource{~/PerryPerrySource/LaTeX/ExperimentalMusic_Bibliography.bib}
+
+\newsavebox{\abstractbox}
+\renewenvironment{abstract}
+  {\begin{lrbox}{0}\begin{minipage}{\textwidth}
+   \begin{center}\normalfont\sectfont\abstractname\end{center}\quotation}
+  {\endquotation\end{minipage}\end{lrbox}%
+   \global\setbox\abstractbox=\box0 }
+
+\usepackage{etoolbox}
+\makeatletter
+\expandafter\patchcmd\csname\string\maketitle\endcsname
+  {\vskip\z@\@plus3fill}
+  {\vskip\z@\@plus2fill\box\abstractbox\vskip\z@\@plus1fill}
+  {}{}
+\makeatother
+
+\DeclareCiteCommand{\citeyearpar}
+    {}
+    {\mkbibparens{\bibhyperref{\printdate}}}
+    {\multicitedelim}
+    {}
+
+\begin{document}
+    \title{Experimental Music\\Summative Assignment 2\\Essay}
+    \subtitle{\LARGE{The role of electronic feedback and amplification in
+    experimental music composition.}}
+    \author{Sam Perry\\U1265119}
+    \date{}
+
+    \begin{abstract} 
+    \end{abstract}
+
+    \maketitle
+
+    \section{Defining feedback and amplification}
+        \subsection{Acoustic Feedback}
+        \subsection{Electronic Feedback}
+        \subsection{Mathmatical FeedbacK}
+        Rational Melody XXI - Tom Johnson
+        Not electronic feedback, but serves as an example that feedback is not
+        limited to electronics.
+        \subsection{Amplification}
+
+    \section{Musical Aspects and Implications of Feedback Systems}
+        \subsection{Indeterminacy}
+        \subsection{Process and Control}
+        \subsection{Rhythmic/Temporal Implications of Feedback}
+        \subsection{Dynamic Implications of Artificial Amplitude Adjustment}
+
+    \section{Composition Analysis}
+        \subsection{Acoustic Feedback}
+            Steve Reich's Pendulum Music
+            Robert Ashley's The Wolfman
+
+        \subsection{Electronic Feedback}
+            David Tutor's Untitled (1996), Toneburst (2004), and Pulsers (1996)
+            Gordon Mumma's Hornpipe
+
+        \subsection{Amplification}
+            John Cage's Cartridge Music
+            Stockhausen's Mikrophonie
+
+    \printbibliography
+
+\end{document}
