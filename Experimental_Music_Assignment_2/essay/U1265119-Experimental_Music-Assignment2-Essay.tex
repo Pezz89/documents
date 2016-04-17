@@ -82,35 +82,65 @@
         \item{Electronic Feedback}
         \item{Mathmatical Feedback}
     \end{itemize}
+    In order to fully understand feedback, electronic amplification will also
+    be explored due to it's integral part in feedback system control.
         
-        \subsection{Acoustic Feedback}
-        \subsection{Electronic Feedback}
-        \subsection{Mathmatical FeedbacK}
-        Rational Melody XXI - Tom Johnson
-        Not electronic feedback, but serves as an example that feedback is not
-        limited to electronics.
-        IIR filter example?
-        \subsection{Amplification}
+    \subsection{Acoustic Feedback}
+    Acoustic feedback occurs when a closed loop is created between an audio
+    transducer (such as a microphone or guitar pickup) and amplifier,
+    causing previously amplified audio to be reamplified continuously at an
+    exponential rate as illustrated in Figure~\ref{acoustic_feedback}.\\
+    \begin{figure}[H]
+        \makebox[\textwidth]{\includegraphics[width=0.75\textwidth]{acoustic_feedback_diagram}}
+        \caption[Caption for LOF]{Acoustic Feedback Diagram\protect\footnotemark}
+        \label{acoustic_feedback}
+    \end{figure}
+
+    \footnotetext{Diagram taken from:
+    \url{http://www.mediacollege.com/audio/howto/feedback.html}}
+
+    This is a common problem in the context of live audio, as the
+    exponential nature of the feedback causes a distinct "howling" sound
+    that builds rapidly and is commonly considered unplesant. As a result,
+    a great deal of research has been carried out into methods for
+    attenuating and controlling this effect.~\parencite[p.1]{}
+    However, the volatile and unpredictable nature of acoustic feedback has
+    been used to great effect in both popular and avant-garde music.
+    Pioneering guitarists such as Jimi Hendrix have used the loop created
+    through placing an electric guitar pickup close to it's amplifier to
+    compliment virtuosic guitar solos in pieces such as Foxy Lady~\citeyearpar{}
+    This is taken one step further in works such as Steve Reich's Pendulum
+    Music, where feedback becomes the focus of the piece entirely. This is
+    discussed further in section~\ref{wolfman}
+    
+    \subsection{Electronic Feedback}
+    \subsection{Mathmatical Feedback}
+    Rational Melody XXI - Tom Johnson
+    Not electronic feedback, but serves as an example that feedback is not
+    limited to electronics.
+    IIR filter example?
+    \subsection{Amplification}
 
     \section{Musical Aspects and Implications of Feedback Systems}
-        \subsection{Indeterminacy}
-        \subsection{Process and Control}
-        \subsection{Rhythmic/Temporal Implications of Feedback}
-        \subsection{Spectral Implications of Feedback}
-        \subsection{Dynamic Implications of Artificial Amplitude Adjustment}
+    \subsection{Indeterminacy}
+    \subsection{Process and Control}
+    \subsection{Rhythmic/Temporal Implications of Feedback}
+    \subsection{Spectral Implications of Feedback}
+    \subsection{Dynamic Implications of Artificial Amplitude Adjustment}
 
     \section{Composition Analysis}
-        \subsection{Acoustic Feedback}
-            Steve Reich's Pendulum Music
-            Robert Ashley's The Wolfman - ref: kyle gann - robert ashley
+    \subsection{Acoustic Feedback}
+    \subsubsection{Steve Reich's Pendulum Music}
+    \subsubsection{Robert Ashley's The Wolfman}\label{wolfman}
+    - ref: kyle gann - robert ashley
 
-        \subsection{Electronic Feedback}
-            David Tutor's Untitled (1996), Toneburst (2004), and Pulsers (1996)
-            Gordon Mumma's Hornpipe
+    \subsection{Electronic Feedback}
+        David Tutor's Untitled (1996), Toneburst (2004), and Pulsers (1996)
+        Gordon Mumma's Hornpipe
 
-        \subsection{Amplification}
-            John Cage's Cartridge Music
-            Stockhausen's Mikrophonie
+    \subsection{Amplification}
+        John Cage's Cartridge Music
+        Stockhausen's Mikrophonie
 
     \printbibliography
 
