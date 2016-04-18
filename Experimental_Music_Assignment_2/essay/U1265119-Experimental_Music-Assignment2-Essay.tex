@@ -12,6 +12,7 @@
 \usepackage{graphicx}
 % Create hyperlinks in bibliography
 \usepackage{hyperref}
+\usepackage{amsmath}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -91,13 +92,12 @@
     causing previously amplified audio to be reamplified continuously at an
     exponential rate as illustrated in Figure~\ref{acoustic_feedback}.\\
     \begin{figure}[H]
-        \makebox[\textwidth]{\includegraphics[width=0.75\textwidth]{acoustic_feedback_diagram}}
+        \makebox[\textwidth]{\includegraphics[width=\textwidth]{acoustic_feedback_diagram}}
         \caption[Caption for LOF]{Acoustic Feedback Diagram\protect\footnotemark}
         \label{acoustic_feedback}
     \end{figure}
 
-    \footnotetext{Diagram taken from:
-    \url{http://www.mediacollege.com/audio/howto/feedback.html}}
+    \footnotetext{Diagram taken from:~\parencite[p.185]{holmes2012eaem}}
 
     This is a common problem in the context of live audio, as the exponential
     nature of the feedback causes a distinct "howling" sound that builds
@@ -134,8 +134,54 @@
     creative musical possibilities.
 
     \subsection{Amplification}
-    It has been stated that feedback (particularly audio feedback) is difficult
-    to control. This is due to it's recursive nature. 
+    Amplification is the process of scaling a signal by a chosen factor.
+    Factors $>1.$ result in an increased overall amplitude, whilst factors
+    $<1.$ result in an attenuated signal amplitude~\parencite[p.3-4]{kadis2012sosr}. 
+    This artificial modification of amplitude has a number of interesting sonic
+    effects in itself, as it allows for the magnification of sounds that may not
+    naturally be perceivable and conversely, the reduction of extremely loud
+    sounds, to with a comfortable range for hearing. This explored through
+    works such as John Cage's Cartridge Music and Stockhausen's Mikrophonie as
+    discussed in section~\ref{amp}\\
+
+    It has been stated that feedback (particularly acoustic feedback) is
+    difficult to control. This is due to it's recursive nature and the tendancy
+    in many situations for output that exceeds unity gain (a state, whereby the
+    output amplitude of a feedback system is equal to that of it's input) to be
+    fed back into the system. Amplification is therefor a crucial element for
+    controlling the results of a feedback system. By attenuating an output
+    before feeding it back to a system, it is possible to ensure that outputs
+    do not grow at an exponential rate.
+    \begin{figure}[H]
+        \makebox[\textwidth]{\includegraphics[width=0.75\textwidth]{IIR_flow_diagram}}
+        \caption[Caption for LOF]{Basic Feedback Signal Flowchart\protect\footnotemark}
+        \label{feed_flowchart}
+    \end{figure}
+
+    \footnotetext{Diagram adapted from:~\parencite[p.72]{zolzer2011dafx}}
+
+    \begin{figure}[H]
+    This can be demonstrated mathmatically using the following equation as
+    illustrated in figure~\ref{feed_flowchart}:
+        \begin{align*}
+            & y(n) = x(n) + gy(n-M)\\
+            & \text{where:}\\
+            & x\text{ is the input signal}\\
+            & y\text{ is the output signal}\\
+            & n\text{ is the current point in time}\\
+            & M\text{ is the signal delay in time}\\
+            & g\text{ is the feedback coefficient}\\
+        \end{align*}
+    \end{figure}
+    It is clear that $|g|$ dictates the stability of the signal, as values
+    $>1.$ increase exponentially as stated above.~\parencite[p.70-72]{zolzer2011dafx} 
+
+    For example, in the case of acoustic feedback, $g$ is dictated by the
+    amount of signal that passes from the amplifier back to the microphone.
+    Placing the microphone close will result in a large amount of the amplified
+    signal returning to the amplifier, causing further amplification. When the
+    system reaches it's limit (which it will do very quickly) the signal
+    distorts, causing the typical "howling" effect.
 
     \subsection{Mathmatical Feedback}
     Rational Melody XXI - Tom Johnson
@@ -160,9 +206,7 @@
         David Tutor's Untitled (1996), Toneburst (2004), and Pulsers (1996)
         Gordon Mumma's Hornpipe
 
-    \subsection{Amplification}
-        John Cage's Cartridge Music
-        Stockhausen's Mikrophonie
+        \subsection{Amplification}\label{amp}
 
     \section{Conclusion}
 
