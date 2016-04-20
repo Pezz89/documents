@@ -103,14 +103,15 @@
     nature of the feedback causes a distinct "howling" sound that builds
     rapidly and is commonly considered unplesant. As a result, a great deal of
     research has been carried out into methods for attenuating and controlling
-    this effect.~\parencite[p.1]{} However, the volatile and unpredictable
-    nature of acoustic feedback has been used to great effect in both popular
-    and avant-garde music.  Pioneering guitarists such as Jimi Hendrix have
-    used the loop created through placing an electric guitar pickup close to
-    it's amplifier to compliment virtuosic guitar solos in pieces such as Foxy
-    Lady~\citeyearpar{} This is taken one step further in avante-garde works
-    such as Steve Reich's Pendulum Music, where feedback becomes the focus of
-    the piece entirely. This is discussed further in section~\ref{pendulum}
+    this effect.~\parencite[p.1]{waterschoot2010fyafc} However, the volatile
+    and unpredictable nature of acoustic feedback has been used to great effect
+    in both popular and avant-garde music.  Pioneering guitarists such as Jimi
+    Hendrix have used the loop created through placing an electric guitar
+    pickup close to it's amplifier to compliment virtuosic guitar solos in
+    pieces such as Foxy Lady~\citeyearpar{} This is taken one step further in
+    avante-garde works such as Steve Reich's Pendulum Music, where feedback
+    becomes the focus of the piece entirely. This is discussed further in
+    section~\ref{pendulum}
     
     \subsection{Electronic Feedback}
     Electronic feedback takes the principal of recursively feeding an output
@@ -135,8 +136,10 @@
 
     \subsection{Amplification}
     Amplification is the process of scaling a signal by a chosen factor.
-    Factors $>1.$ result in an increased overall amplitude, whilst factors
-    $<1.$ result in an attenuated signal amplitude~\parencite[p.3-4]{kadis2012sosr}. 
+    Factors $>1.$ result in an increased overall amplitude (a regenerative
+    feedback system), whilst factors
+    $<1.$ result in an attenuated signal amplitude (a degenerative feedback
+    system)~\parencite[p.3-4]{kadis2012sosr}. 
     This artificial modification of amplitude has a number of interesting sonic
     effects in itself, as it allows for the magnification of sounds that may not
     naturally be perceivable and conversely, the reduction of extremely loud
@@ -151,7 +154,7 @@
     fed back into the system. Amplification is therefor a crucial element for
     controlling the results of a feedback system. By attenuating an output
     before feeding it back to a system, it is possible to ensure that outputs
-    do not grow at an exponential rate.
+    do not grow at an exponential rate.~\parencite[p.71-72]{zolzer2011dafx}
     \begin{figure}[H]
         \makebox[\textwidth]{\includegraphics[width=0.75\textwidth]{IIR_flow_diagram}}
         \caption[Caption for LOF]{Basic Feedback Signal Flowchart\protect\footnotemark}
@@ -161,8 +164,8 @@
     \footnotetext{Diagram adapted from:~\parencite[p.72]{zolzer2011dafx}}
 
     \begin{figure}[H]
-    This can be demonstrated mathmatically using the following equation as
-    illustrated in figure~\ref{feed_flowchart}:
+    This can be demonstrated mathmatically using the following example equation
+    for a feedback system as illustrated in figure~\ref{feed_flowchart}:
         \begin{align*}
             & y(n) = x(n) + gy(n-M)\\
             & \text{where:}\\
@@ -184,29 +187,193 @@
     distorts, causing the typical "howling" effect.
 
     \subsection{Mathmatical Feedback}
-    Rational Melody XXI - Tom Johnson
-    Not electronic feedback, but serves as an example that feedback is not
-    limited to electronics.
-    IIR filter example?
-
+    Mathmatical feedback is not technically a form of electronic feedback and
+    so will not be discussed in detail, however it does provide a good example
+    of the extent to which the concepts of feedback are used for creative
+    purposes in the context of experimental music. 
+    Previously discussed feedback methods operate directly on a signal.
+    However, mathmatical feedback differs, in that it applies the mathmatical
+    principals of feedback to influence musical parameters of the composition.
+    This is demonstarted in Tom Johnson's Rational Melody XXI, where Johnson
+    specifies each subsequent bar as a retrograde of the previous bar, thus
+    causing the composition of each bar to rely on it's
+    predecessor.~\parencite[p.72]{weisert2010ioi} This follows the same
+    principles as stated in the equation with minor changes:
+    \begin{align*}
+        & y(n) = x(n) + g \cdot \text{ret}(y(n-M))\\
+        & \text{where:}\\
+        & \text{ret is a retrograde function}\\
+        & g = 1\\
+        & n_0 = \text{the initial musical phrase}\\
+        & n_{n\neq0} = \text{an empty phrase}
+    \end{align*}
+    
     \section{Musical Aspects and Implications of Feedback Systems}
-    \subsection{Indeterminacy}
+    There are a number of interesting musical implications when using feedback
+    and amplitude ajustment as a compositional tools. Features, such as it's
+    indeterministic nature and rhythmic characteristics, inherent to the nature
+    of feedback make it an interesting technique for musical exploration and
+    there are many examples of artists exploiting these qualities in
+    experimental compositions. Likewise, amplitude modification offers a number
+    of compositional possibilities for both the control of feedback and for
+    creative effect in of itself. This section outlines some of the key musical
+    aspects of feedback and artificial amplification and provides examples of
+    notable compositions that demonstrate these principals.
+
+    \subsection{Indeterminacy}\label{indeterminate}
+    Indeterminacy is related to the use of chance operations in music
+    composition and performance. techniques that involve a degree of
+    uncertainty, where external variables or unpredictable factors affect the
+    outcome, are defined as indeterminate. Simms describes indeterminacy as
+    "Any part of a musical work is indeterminate if it is chosen by chance, or
+    if its performance is not precisely
+    specified."~\parencite[p.357]{simms1986mtc} It is a topic of interest for
+    experimental composers for a number of reasons.
+
+    \subsubsection{Variation in Performance}\label{variance}
+    Using indeterministic processes as part of a composition allows for
+    variation in the performance of said composition on a case by case basis.
+    Through the addition of random factors to a composition, far greater
+    degrees of variance are created in the performance of a peice, allowing for
+    an infinite number of possible versions as opposed to the comparatively
+    limited interpretation of static compositions where all elements are
+    controlled directly by the composer.~\parencite[p.97-98, 381]{jc2009co,
+    holmes2012eaem}
+    This variance can take many forms dependant on the indeterministic factor.
+    An example might be the performer, which is demonstarted well through
+    Cornelius Cardew and Christian Wolff's compositions for the Fluxorchestra.
+    By composing "unambiguous, concrete proposals (which still left room for
+    personal idiosyncrasies in realization)", indeterminicity was created
+    through the skill and interpretation of the performers in pieces such as
+    "Stones" by Wolff or "The Great Learning" by
+    Cardew~\parencite[110]{nyman1999em}\\
+    In terms of feedback, variance in feedback will depend primarily on the
+    variance of the input to the system and the variance of control. due to the
+    non-linear fashion in which feedback effects input to produce an output,
+    subtle changes in these may resut in significant changes to the output. An
+    example of this is a guitarist using an amplifier to produce feedback from
+    his guitar. In each performance, the subtle changes in distance between the
+    guitar and amplifier may result in significant differences to feedback
+    tone. This property of feedback applies to compositions such as Steve
+    Reich's Pendulum Music, aswell as Gordon Mumma's Hornpipe, discussed in
+    section~\ref{pendulum} and section~\ref{hornpipe}.
+
+    \subsubsection{Bias Removal}
+    Indeterminacy is able to remove personal bias and ego involved in decision
+    making from a composition or performance. By leaving compositional
+    decisions to chance, it is ensured that the music produced is not created
+    with intent and is seperated from the composer's personal taste, as stated
+    by John Cage~\parencite[p.381]{holmes2012eaem}. This technique is used in
+    his composition "Music of Changes", where chance operations are used for
+    the organisation of material in such a way that "bypassed a reliance on his
+    aesthetic judgment". By combining this relinquished control with the
+    precise control of other aspects of the peice, Cage was able to create a
+    "balance between rational and irrational" through the combination of
+    control and total removal of control over compositional
+    elements~\parencite[p.97-98]{jc2009co}.\\
+    In relation to feedback directly, the ability for feedback to create
+    exponentially complex output from relatively simple feedback systems
+    create clear elements of indeterminacy through the unpredictability of
+    their output. This is demonstrated in Steve Reich's "Pendulum Music" as
+    discussed in section ~\ref{pendulum}. Parallels can be drawn between John
+    Cage's use of indeterminacy to dictate organizational aspects of "Music of
+    Changes" with Steve Reich's use of feedback to dictate sonic events in
+    "Pendulum Music".
+    
     \subsection{Process and Control}
+    The term "process" refers to the situation outlined by a composer, designed
+    for the creation of sound. Where popular music focuses on creating pre-defined
+    musical content and structure, experimental musicians focus on the creation
+    of a process through which sound may be generated. This may involve the
+    creation of rules or instructions that outline the conditions that are
+    needed in order to create an outcome, the content of which may differ on
+    each performance based on any indeterministic factors (see
+    section~\ref{indeterminate})~\parencite[p.4]{nyman1999em}
+    There are many forms of process used for the composition of experimental
+    music. These are observed in detail in \textit{Experimental Music - Cage
+    and Beyond}~\parencite[p.4-14]{nyman1999em}
+
+    \subsubsection{Feedback Process}
+    Feedback is concerned mainly with electronic process, where an electronic
+    system is defined/set up in order to facilitate the creation of sound. The
+    specified set-up will therefor have a direct impact on the outcome of the
+    peice, combined with factors such as the methods for control other
+    processes involved in the peices realisation. This is true of Gordon
+    Mumma's Hornpipe~\citeyearpar{mumma2002lem} (as detailed in
+    section~\ref{hornpipe}) where electronic circuitry is designed specifically
+    to explore the effects of custom electronic circuitry used to produce
+    controlled feedback~\parencite[p.8, 390]{nyman1999em}\\
+
+    \subsubsection{Feedback Control}
+    As stated previously, feedback can be difficult to control due to it's
+    indeterministic properties. The complex and intricate outputs possible with
+    even the simplest of feedback systems causes results to differ
+    significantly based on the exact conditions of the system. The two most
+    significant factors that affect a basic feedback system are:
+    \begin{itemize}
+        \item System input
+        \item System parameters
+    \end{itemize}
+
+    \paragraph{System Input} As with most systems, an alteration to the input
+    of the system will result in the alteration of the output. This is
+    generally true of feedback systems as, for example, providing an electronic
+    feedback circuit with a louder input will most likely result in a louder
+    output. This relationship may not be linear and depends on the design of
+    the feedback system, which in turn determines the indeterministic nature of
+    these systems~\parencite[p.19-27]{weisert2010ioi}. However, it still
+    provides a method for control over the output of the system. This is
+    apparent in Mumma's Hornpipe~\citeyearpar{mumma2002lem} where the performer
+    must adapt the input to the system (in this case the sound produced by the
+    french horn) in reaction to the electronic sound produced by the
+    ``cybersonic console''.
+    
+    \paragraph{System Parameters}
+    As stated above, the design of the feedback system will determine it's
+    reponse to a given input. A common method for controlling the design of a
+    feedback system is through the implementation of variable nodes, for the
+    dynamic ajustment of parameters.~\parencite[p.19-27]{weisert2010ioi}
+    A clear example of this is the use of a scaling factor in the feedback loop
+    to paraemtize the regenerative/degenerative nature of the system. By
+    altering this parameter, the degree to which a signal is
+    amplified/attenuated on each recursion can be modified dynamically during
+    performance. This would be attributed to the guitar-amplifier distance in
+    the typical guitar feedback example mentioned in section~\ref{variance}
+
     \subsection{Rhythmic/Temporal Implications of Feedback}
     \subsection{Spectral Implications of Feedback}
     \subsection{Dynamic Implications of Artificial Amplitude Adjustment}
+    Used in isolation in alters the sound by a given factor. 
+    Used as part of feedback it acts as an exponent to the output on each
+    iteration, creating a an dynamic alteration that changes as a function of
+    time.
 
     \section{Composition Analysis}
     \subsection{Acoustic Feedback}
     \subsubsection{Steve Reich's Pendulum Music}\label{pendulum}
+    ~\parencite[p.31]{reich2002wom}
     \subsubsection{Robert Ashley's The Wolfman}\label{wolfman}
     - ref: kyle gann - robert ashley
+    ~\citeyearpar{ashley2003w}
 
     \subsection{Electronic Feedback}\label{ElecFeed}
-        David Tutor's Untitled (1996), Toneburst (2004), and Pulsers (1996)
-        Gordon Mumma's Hornpipe
-
-        \subsection{Amplification}\label{amp}
+    \subsubsection{David Tutor's Untitled (1996), Toneburst (2004), and Pulsers
+    (1996)}
+    ~\citeyearpar{tudor1996twfle}
+    ~\citeyearpar{tudor2004lem}
+    ~\citeyearpar{tudor1996twfle}
+    \subsubsection{Gordon Mumma's Hornpipe}\label{hornpipe}
+    ~\citeyearpar{mumma2002lem}
+    A combination of electronic and person process due to the sound produced by
+    the electronic circuitry's interplay with the human improvisation in
+    reaction to create the final result.
+    Indeterministic due to the relative unpredictability of the electronic
+    circuitry.
+    \subsection{Amplification}\label{amp}
+    \subsubsection{John Cage's Cartridge Music} 
+    ~\citeyearpar{cage2013cm}
+    \subsubsection{Stockhausen's Mikrophonie}
+    ~\citeyearpar{stockhausen1995mmt}
 
     \section{Conclusion}
 
