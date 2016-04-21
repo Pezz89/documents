@@ -91,7 +91,7 @@
     transducer (such as a microphone or guitar pickup) and amplifier,
     causing previously amplified audio to be reamplified continuously at an
     exponential rate as illustrated in Figure~\ref{acoustic_feedback}.\\
-    \begin{figure}[H]
+    \begin{figure}
         \makebox[\textwidth]{\includegraphics[width=\textwidth]{acoustic_feedback_diagram}}
         \caption[Caption for LOF]{Acoustic Feedback Diagram\protect\footnotemark}
         \label{acoustic_feedback}
@@ -155,7 +155,7 @@
     controlling the results of a feedback system. By attenuating an output
     before feeding it back to a system, it is possible to ensure that outputs
     do not grow at an exponential rate.~\parencite[p.71-72]{zolzer2011dafx}
-    \begin{figure}[H]
+    \begin{figure}
         \makebox[\textwidth]{\includegraphics[width=0.75\textwidth]{IIR_flow_diagram}}
         \caption[Caption for LOF]{Basic Feedback Signal Flowchart\protect\footnotemark}
         \label{feed_flowchart}
@@ -341,39 +341,100 @@
     the typical guitar feedback example mentioned in section~\ref{variance}
 
     \subsection{Rhythmic/Temporal Implications of Feedback}
+    The process of feeding a signal back through a system has consequences in
+    terms of a subsequent iteration's rhythms. The superposition of signals
+    causes alterations in the temporal content of the subsequenct signals,
+    resulting in the removal and addition of temporal peaks to the signal (a
+    signal's peaks are linked to the perceived characteristic of the signal's
+    rhythm).  The effects of feedback are discussed at length with regards to
+    Alvin Lucier's "I am sitting in a room" by
+    Weisert~\parencite[p.64-68]{weisert2010ioi}. The rhythmic impact of a
+    feedback system is complex. However, at a basic level, it should be
+    understood that feedback causes a shift in rhythmic content over time.  The
+    exact rhythmic alteration is dependant on factors such as the feedback
+    system, input signal and it's relationship with the subsequent iterations
+    of itself.
+
     \subsection{Spectral Implications of Feedback}
+    As with rhythmic content, feedback has a complex effect on the spectral
+    content of a signal. As with the rhythmic content, the effect of
+    superposition on the original signal emphasizes and reduces spectral
+    content. This is again, examined at length in Weisert's analysis of "I am
+    sitting in a room" and a similar shift in spectral content can be observed
+    to that of the rhythmic content over
+    time.~\parencite[p.60-64]{weisert2010ioi}
+    
     \subsection{Dynamic Implications of Artificial Amplitude Adjustment}
-    Used in isolation in alters the sound by a given factor. 
-    Used as part of feedback it acts as an exponent to the output on each
-    iteration, creating a an dynamic alteration that changes as a function of
-    time.
+    The artificial ajustment of audio amplitude is an important technique as it
+    allows for the alteration of a signal's energy. This acts as a form of
+    sonic magnifier, able to make inaudibley small sounds audible, as
+    demonstrated in pieces such as John Cage's "Cartridge
+    Music"~\citeyearpar{cage2013cm} and Stockhausen's "Mikrophonie"
+    collection~\citeyearpar{stockhausen1995mmt}. This technique was instrumental in the
+    development of electroacoustic music by artists such as cage and
+    stockhausen as it allowed the details of quiet sounds to be amplified
+    artificially in a live environment.~\cite[p.351-352]{holmes2012eaem}
+
+    This process is combined with the principals of a feedback system in order
+    to provide control to a feedback system. By altering the amplification of
+    signals in a feedback system, dynamic control of feedback properties is
+    possible. This is clearly used in works such as Robert Ashley's "The
+    Wolfman" in order to tune the feedback in an appropriate
+    fashion.~\cite[p.186]{holmes2012eaem}
 
     \section{Composition Analysis}
+    There are a large number of peices that utilise electronic feedback
+    creatively. This section analyses some of the most prominent peices in
+    order to present some explorations and useages of feedback in experimental
+    music.
+
     \subsection{Acoustic Feedback}
-    \subsubsection{Steve Reich's Pendulum Music}\label{pendulum}
-    ~\parencite[p.31]{reich2002wom}
-    \subsubsection{Robert Ashley's The Wolfman}\label{wolfman}
+
+    \subsubsection{Steve Reich's Pendulum Music~\parencite[p.31]{reich2002wom}}\label{pendulum} 
+    This piece is possibly one of the most direct explorations of acoustic
+    feedback. Where other pieces the effects of feedback on an external source,
+    Pendulum Music focuses directly on the sonic phenomena generated purely by
+    the feedback system and the acoustics of the space~\parencite[p.50-51]{weisert2010ioi}.
+
+    Aesthetically the piece begins with clear rhythms created by the distinct
+    motion of the microphones as they pass over the speakers. This slowly
+    degrades as the microphones lose momentum, resulting in the pure feedback
+    tones created as the microphones hang motionless over the speaker at the
+    end. Interesting phase relationships can be observed between the
+    microphones as the piece progresses, which is in keeping with Reichs works
+    such as Come Out~\citeyearpar{reich1966comeout}
+
+    This piece has a clear focus on process and was described as "the ultimate
+    process piece" by Reich.  Designed as an "audible scupture", the piece is
+    designed to limit interaction in order to focus on the natural interaction
+    of acoustic feedback. Control of aesthetics is determined by the
+    semi-indeterministic method of releasing the suspended microphones, then
+    allowing natural swinging motions to dictate sonic events and rhythms. This
+    process is described as semi indeterministic, as it is clear that the
+    microphones will swing back and fourth at diminishing amounts over time,
+    however the audible feedback, interplay between audible events, feedback
+    tone etc\ldots are largely left to chance. This created a stark contrast
+    between the compositional process and chaos process presented through the
+    uncontrolled feedback~\parencite[p.186]{holmes2012eaem}.
+    
+    
+    \subsubsection{Robert Ashley's The Wolfman~\citeyearpar{ashley2003w}}\label{wolfman}
     - ref: kyle gann - robert ashley
-    ~\citeyearpar{ashley2003w}
+    
 
     \subsection{Electronic Feedback}\label{ElecFeed}
-    \subsubsection{David Tutor's Untitled (1996), Toneburst (2004), and Pulsers
-    (1996)}
-    ~\citeyearpar{tudor1996twfle}
-    ~\citeyearpar{tudor2004lem}
-    ~\citeyearpar{tudor1996twfle}
-    \subsubsection{Gordon Mumma's Hornpipe}\label{hornpipe}
-    ~\citeyearpar{mumma2002lem}
+    \subsubsection{David Tutor's Untitled~\citeyearpar{tudor1996twfle}, Toneburst~\citeyearpar{tudor2004lem}, and Pulsers~\citeyearpar{tudor1996twfle}}
+    \subsubsection{Gordon Mumma's Hornpipe~\citeyearpar{mumma2002lem}}\label{hornpipe}
     A combination of electronic and person process due to the sound produced by
     the electronic circuitry's interplay with the human improvisation in
     reaction to create the final result.
     Indeterministic due to the relative unpredictability of the electronic
     circuitry.
+
     \subsection{Amplification}\label{amp}
-    \subsubsection{John Cage's Cartridge Music} 
-    ~\citeyearpar{cage2013cm}
-    \subsubsection{Stockhausen's Mikrophonie}
-    ~\citeyearpar{stockhausen1995mmt}
+    \subsubsection{John Cage's Cartridge Music~\citeyearpar{cage2013cm}} 
+    
+    \subsubsection{Stockhausen's Mikrophonie~\citeyearpar{stockhausen1995mmt}}
 
     \section{Conclusion}
 
