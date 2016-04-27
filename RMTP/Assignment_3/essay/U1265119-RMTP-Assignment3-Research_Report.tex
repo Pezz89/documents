@@ -1,0 +1,61 @@
+\documentclass[titlepage]{scrartcl}
+\usepackage{enumitem}
+\usepackage[british]{babel}
+\usepackage[style=apa, backend=biber]{biblatex}
+\DeclareLanguageMapping{british}{british-apa}
+\usepackage{url}
+\usepackage{float}
+\restylefloat{table}
+\usepackage{perpage}
+\MakePerPage{footnote}
+\usepackage{abstract}
+\usepackage{graphicx}
+% Create hyperlinks in bibliography
+\usepackage{hyperref}
+\usepackage{amsmath}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{blindtext}
+\setkomafont{disposition}{\normalfont\bfseries}
+
+\graphicspath{
+    {./resources/},
+}
+\addbibresource{~/PerryPerrySource/LaTeX/RMTP_Bibliography.bib}
+
+\newsavebox{\abstractbox}
+\renewenvironment{abstract}
+  {\begin{lrbox}{0}\begin{minipage}{\textwidth}
+   \begin{center}\normalfont\sectfont\abstractname\end{center}\quotation}
+  {\endquotation\end{minipage}\end{lrbox}%
+   \global\setbox\abstractbox=\box0 }
+
+\usepackage{etoolbox}
+\makeatletter
+\expandafter\patchcmd\csname\string\maketitle\endcsname
+  {\vskip\z@\@plus3fill}
+  {\vskip\z@\@plus2fill\box\abstractbox\vskip\z@\@plus1fill}
+  {}{}
+\makeatother
+
+\DeclareCiteCommand{\citeyearpar}
+    {}
+    {\mkbibparens{\bibhyperref{\printdate}}}
+    {\multicitedelim}
+    {}
+
+\begin{document}
+    \title{Researching Music, Technology and Performance\\Summative Assignment 3\\Research Report}
+    \subtitle{\LARGE{Is the Artificial Processing of Music Less Acceptable Based on Genre?}}
+    \author{Sam Perry\\U1265119}
+    \date{}
+
+    \begin{abstract} 
+    \end{abstract}
+
+    \maketitle
+
+    \printbibliography
+
+\end{document}
