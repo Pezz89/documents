@@ -19,6 +19,9 @@
 \usepackage{blindtext}
 \setkomafont{disposition}{\normalfont\bfseries}
 
+\usepackage{pdfpages}
+
+
 \graphicspath{
     {./resources/},
 }
@@ -30,6 +33,16 @@
    \begin{center}\normalfont\sectfont\abstractname\end{center}\quotation}
   {\endquotation\end{minipage}\end{lrbox}%
    \global\setbox\abstractbox=\box0 }
+
+\usepackage{ifthen}
+
+\newcommand*{\appendixmore}{%
+  \renewcommand*{\othersectionlevelsformat}[1]{%
+    \ifthenelse{\equal{##1}{section}}{\appendixname~}{}%
+    \csname the##1\endcsname\autodot\enskip}
+  \renewcommand*{\sectionmarkformat}{%
+    \appendixname~\thesection\autodot\enskip}
+}
 
 \usepackage{etoolbox}
 \makeatletter
@@ -47,7 +60,7 @@
 
 \begin{document}
     \title{Researching Music, Technology and Performance\\Summative Assignment 3\\Research Report}
-    \subtitle{\LARGE{Is the Artificial Processing of Music Less Acceptable Based on Genre?}}
+    \subtitle{\LARGE{Is the Acceptability of Artificial Music Processing Dependent on Genre?}}
     \author{Sam Perry\\U1265119}
     \date{}
 
@@ -56,6 +69,74 @@
 
     \maketitle
 
+    \section{Background}
+    Since the introduction of sound recording, audio technicians have sought
+    ways to produce the highest quality musical recordings possible. More
+    recently, technology has been used creatively for the improvement and
+    alteration of recordings.~\parencite[p.80, 258-263]{millard2005aor} A
+    plethora of tools and techniques have been developed with the aim of
+    improving the quality of audio; Tools such as auto-tuners, compressors,
+    equalisers and artificial reverbs have been created to alter the input
+    sound in an infinite number of ways.  Although this may seem like an
+    obvious improvement in the production of music, it raises questions as to
+    the quality and musicianship of the composers and performers. Where once an
+    out of tune melody was unfixable, methods are now available for the
+    specific purpose of hiding these imperfections. Room acoustics can now be
+    transformed, drum rhythms tightened and dynamics altered to improve almost
+    any aspect of the original recording. This potentially allows for greater
+    degrees of of error from the origonal musician, allowing a technician to
+    compensate.~\parencite{bbc2014crm}\\ 
+    These techniques are used to varying degrees in different styles of music
+    and are not purely used as a means for musical correction. Many musical
+    genres use technology in varying aspects of their realisation.  The
+    invention of instruments such as the synthesizer has lead to a variety of
+    electronic based musical genres and has greatly influenced modern popular
+    music. Where a traditional classical music recording may utilise modern
+    production techniques to produce the most accurate representation of the
+    original performance, a electronic dance music recording may synthesise a
+    significant amount of sound purely through electronic means~\parencite{}.\\
+    Does this artificial synthesis and enhancement of sound detract from
+    the listener's perception of the musicianship? This will be analysed to
+    give an outline as to the possible relationships between these factors
+    across a wide variety of musical genres.
+
+    \section{Literature Review}\label{LR}
+    Musical preference research - what influeces a persons perception of good
+    music
+    Musical talent research - what defines good musicianship?
+    Historic research into reasons behind begining to creatively use technology for production.
+
+    \section{Methodology}
+    Research will be carried out through the use of a questionnaire to gather
+    opinions on artificial processing in relation to a wide range of genres.
+    A questionnaire has been created to collect quantitive data from annonymous
+    participants. This data will then be analysed to reveal any correlations
+    between view on musical quality and perceptions of artificial processing.
+    These results will then be compared to previous research presented in
+    section~\ref{LR} to give an overall understanding of the impact of
+    artificial processing.
+
+    \subsection{Procedure}
+    The majority of original research will be carried out through the design
+    and collection of data from a questionnaire. The questionnaire was designed
+    for the quantitive analysis of annonymous oppinions on the perceived
+    artificialness and musical quality of a range of musical samples.\\
+    The questionnaire was designed with two main sections. The first gave an
+    indication of the participant's musical knowlege and preference, the second
+    collected the main data based on the participant's use of a likeart scales
+    to rate aspects of the excepts.
+    \subsection{Participants}
+    \subsection{Results}
+
+    \section{Analysis}
+
+    \section{Conclusion}
+    
     \printbibliography
 
+    \appendix
+    \gdef\thesection{\centerline{Appendix \Alph{section}}}
+    \section{}
+    The following pages show the final questionnaire used for collection of results. 
+    \includepdf[pages=-]{../questionnaire/questionnaire.pdf}
 \end{document}
