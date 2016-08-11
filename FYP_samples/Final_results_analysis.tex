@@ -1,0 +1,178 @@
+
+\documentclass{scrartcl}
+\usepackage{enumitem}
+\usepackage[british]{babel}
+\usepackage[style=apa, backend=biber]{biblatex}
+\DeclareLanguageMapping{british}{british-apa}
+\usepackage{url}
+\usepackage{float}
+\restylefloat{table}
+\usepackage{perpage}
+\MakePerPage{footnote}
+\usepackage{abstract}
+\usepackage{graphicx}
+% Create hyperlinks in bibliography
+\usepackage{hyperref}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{blindtext}
+\setkomafont{disposition}{\normalfont\bfseries}
+
+
+\graphicspath{
+    {./resources/},
+}
+\addbibresource{~/PerryPerrySource/LaTeX/FYP_Bibliography.bib}
+
+\newsavebox{\abstractbox}
+\renewenvironment{abstract}
+  {\begin{lrbox}{0}\begin{minipage}{\textwidth}
+   \begin{center}\normalfont\sectfont\abstractname\end{center}\quotation}
+  {\endquotation\end{minipage}\end{lrbox}%
+   \global\setbox\abstractbox=\box0 }
+
+\usepackage{etoolbox}
+\makeatletter
+\expandafter\patchcmd\csname\string\maketitle\endcsname
+  {\vskip\z@\@plus3fill}
+  {\vskip\z@\@plus2fill\box\abstractbox\vskip\z@\@plus1fill}
+  {}{}
+\makeatother
+
+\DeclareCiteCommand{\citeyearpar}
+    {}
+    {\mkbibparens{\bibhyperref{\printdate}}}
+    {\multicitedelim}
+    {}
+
+\begin{document}
+    \title{Independant Project\\Descriptor Driven Concatenative Synthesis Tool}
+    \subtitle{\LARGE{Results Analysis}}
+    \author{Sam Perry\\U1265119}
+    \date{}
+
+    \maketitle
+
+    \section{Overview}
+    This document aims to provide reasoning for the sonic characteristics of
+    the audio produced in this project. Samples have been provided to
+    demonstrate the breadth of possibilities for the concatenator script.
+    Samples use a range of databases of varying sizes and aim to show both the
+    strengths of this script and areas that could be developed further to
+    improve results.
+
+    \section{Sample Analysis}
+    Samples are organized in folder named by their source\char`_target databases.
+    
+    \subsection{Guitar\char`_Guitar}
+    Source Database: University of Iowa Sample Database - Guitar\\
+    Target Database: David Chaplin's Guitar Samples\\
+
+    These samples were generated with the intention of matching the clean
+    guitar to a clean guitar database. It was thought that in an ideal
+    situation this would produce a result similar to the original but with the
+    tonal qualities of the sampled guitar. The result is far from this as the
+    current descriptors do not provide a description that is sufficiently
+    accurate. However, The General contour of the clean guitar can be heard and
+    the ``plucky'' qualities of the sampled database are definitely present.
+
+    \subsection{Guitar\char`_Violin}
+    Source Database: University of Iowa Sample Database - Violin\\
+    Target Database: David Chaplin's Guitar Samples\\
+    Overall, result produced were smooth and for the majority of the samples
+    used, are similar to that of a stringed instrument. The occasional glitch
+    detracts from this and there are a number of reason for these small glitches.
+    At around 3 seconds, a high pitched screech can be heard that does not fit
+    in with it's neighbouring samples. When comparing this to the event in the
+    original file, it can be seen that this is a sharp decay and pause that is
+    analysed as an inharmonic signal with very different characteristics to
+    it's neighbouring samples. Use of a viterbi algorithm would most likely
+    help to minimise these types of error, alongside better handling of
+    inharmonic samples.
+
+    \subsection{Guitar\char`_Xylophone}
+    Source Database: University of Iowa Sample Database - Xylophone\\
+    Target Database: David Chaplin's Guitar Samples\\
+    This example demonstrated interesting timbral qualities due to the rich
+    variety of harmonic percussive sounds in the Xylophone database. By
+    matching primarily on pitch and spectral content, a mixture of transient
+    grains are concatenated with reasonable results.
+
+    \subsection{Multiple\char`_Vocal}
+    Source Database: Alex Harker Vocal Database\\
+    Target Database: David Chaplin's Guitar Samples, Rayman Spoken Word
+    Database\\
+    This database provided interesting results in terms of timbre as the outcome
+    is a mixture of vocal techniques. This sounds entirely synthetic which is
+    expected, and there are glitches as with all the results. However, the results
+    appear to be perceptually related to both the source and target databases.
+    Vocal qualities can be heard through the clicks, hums and other elements
+    that are combined. Continuity between grains is a significant problem as
+    selected grains do not flow in the same way that natural vocals might.
+    Again, comparing matches in a post matching process such as a viterbi
+    decoding stage would help to counter this effect.
+    A stretched version of Clean\char`_1 was included to demonstrate the results of
+    setting different values for matching and synthesis overlaps. By setting the
+    matching overlap to 8 and the synthesis overlap to 4, the synthesis was
+    stretched by a factor of 2.
+
+    \subsection{Spoken\char`_Xylophone}
+    Source Database: University of Iowa Sample Database - Xylophone\\
+    Target Database: Rayman Spoken Word Database\\
+
+    This example was generated during development and has been included as it
+    demonstrated an effective mix between the qualities of the two databases.
+    The pitch and envelope of the vocals can be heard whilst the timbre of the
+    Xylophone database is also clear. Glitchy pitch shifted grains can be heard
+    in the background as this was a problem with the project at the time and
+    has since been fixed by altering handling of inharmonic grains in the
+    picth shifter.
+
+    \subsection{Vocal\char`_Marimba}
+    Source Database: University of Iowa Sample Database - Xylophone\\
+    Target Database: Danny Darko Acapella Vocals Sample\\
+    This sample highlights a number of problems with the current implementation
+    of this algorithm.
+    There is a considerable amount of noise as a result of the intensity
+    scaling. This has increased quite sounds with low signal/noise ratios and
+    as a result this can be heard clearly in the results.
+    The clicks produced through poor performance of the pitch shifter have also
+    degraded the signal during synthesis. Replacing the pitch shifter with a
+    more effective algorithm would most likely improve results.
+
+    \subsection{Vocal\char`_Wind}
+    Source Database: University of Iowa Sample Database - Xylophone\\
+    Target Database: Danny Darko Acapella Vocals Sample\\
+    These examples are significantly less satisfying. Inharmonic noise from the
+    player taking breaths mixes poorly to generated a layer of breathy noise.
+    This is further emphasized by the pitch shifting of this noise. This
+    demonstrates an inherent problem with pitch shifting technique used to
+    transform grains, in that inharmonic audio is also transformed. This would
+    be greatly improved with the use of a better pitch shifting algorithm.
+
+    \section{Overall Performance}
+    Overall, it was difficult to generate results of a high quality due to the
+    current issues with the algorithm used. During development, much time was
+    spent increasing the speed of the algorithm to make it possible to create a
+    high enough quantity of results. On reflection, spending more time on
+    improving output quality may have yielded better results. However,
+    overall it is clear that this style of synthesis shows real potential for
+    generating a wide range of interesting sound and as a prototype or proof of
+    concept, the script achieves a reasonable quality of result.
+
+    \section{Database Sources}
+    \begin{table}[H]
+    \centering
+    \label{my-label}
+    \begin{tabular}{ll}
+        \textbf{Database Name}                       & \textbf{Accessed from}                            \\
+        University of Iowa Sample Database  & http://theremin.music.uiowa.edu/MIS.html \\
+        Danny Darko Acapella Vocals Sample & http://www.dannydarko.net/category/remix-stems/\\
+        Alex Harker's Vocal Sample Database & Not Publicly Available                   \\
+        David Chaplin's Guitar Samples      & Not Publicly Available  \\
+        Rayman Spoken Word Database      & Not Publicly Available                  
+    \end{tabular}
+    \end{table}
+
+\end{document}

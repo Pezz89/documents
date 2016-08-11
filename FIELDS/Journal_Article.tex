@@ -1,0 +1,78 @@
+
+\documentclass{scrartcl}
+\usepackage{enumitem}
+\usepackage[british]{babel}
+\usepackage[style=apa, backend=biber]{biblatex}
+\DeclareLanguageMapping{british}{british-apa}
+\usepackage{url}
+\usepackage{float}
+\restylefloat{table}
+\usepackage{perpage}
+\MakePerPage{footnote}
+\usepackage{abstract}
+\usepackage{graphicx}
+% Create hyperlinks in bibliography
+\usepackage{hyperref}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{blindtext}
+\setkomafont{disposition}{\normalfont\bfseries}
+
+
+\graphicspath{
+    {./resources/},
+}
+\addbibresource{~/PerryPerrySource/LaTeX/FYP_Bibliography.bib}
+
+
+\usepackage{etoolbox}
+\makeatletter
+\expandafter\patchcmd\csname\string\maketitle\endcsname
+  {\vskip\z@\@plus3fill}
+  {\vskip\z@\@plus2fill\box\abstractbox\vskip\z@\@plus1fill}
+  {}{}
+\makeatother
+
+\DeclareCiteCommand{\citeyearpar}
+    {}
+    {\mkbibparens{\bibhyperref{\printdate}}}
+    {\multicitedelim}
+    {}
+
+\begin{document}
+    \title{Descriptor Driven Concatenative Synthesis Tool}
+    \subtitle{\LARGE{Abstract Draft}}
+    \author{Sam Perry}
+    \date{}
+
+    \maketitle
+
+
+    \begin{abstract} 
+    A command-line tool is proposed for the exploration of a new form of audio
+    synthesis known as ``concatenative-synthesis'': A form of synthesis that uses
+    perceptual audio analyses to arrange small segments of audio based on their
+    characteristics.  The tool is designed to synthesise representations of an
+    input sound using a database of source sounds. This involves the
+    segmentation and analysis of both the input sound and database, matching of
+    input segments to their closest segment from the database, and the
+    re-synthesis of the closest matches from the database to produce the final
+    result.\\
+
+    The aim was to produce a tool capable of generating high quality sonic
+    representations of an input, and to present a variety of examples that
+    demonstrated the breadth of possibilities that this style of synthesis has
+    to offer. There are a number of other projects that use this form of
+    synthesis, however this project aims primarily to explore the further
+    potential offered through the offline processing of large databases, of
+    which considerably less research exists.\\
+
+    Overall, results demonstrate the wide variety of sounds that can be
+    produced using this method of synthesis. A number of technical issues were
+    outlined that impeded the overall quality of results and efficiency of the
+    software. However, the project clearly demonstrates the strong potential
+    for this type synthesis to be used for creative purposes.
+    \end{abstract}
+
+\end{document}

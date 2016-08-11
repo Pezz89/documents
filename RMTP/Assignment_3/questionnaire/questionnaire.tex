@@ -1,0 +1,533 @@
+\documentclass[a4paper,10pt,BCOR10mm,oneside,headsepline]{scrartcl}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{wasysym}% provides \ocircle and \Box
+\usepackage{enumitem}% easy control of topsep and leftmargin for lists
+\usepackage{color}% used for background color
+\usepackage{forloop}% used for \Qrating and \Qlines
+\usepackage{ifthen}% used for \Qitem and \QItem
+\usepackage{typearea}
+\areaset{17cm}{26cm}
+\setlength{\topmargin}{-1cm}
+\usepackage{scrpage2}
+\pagestyle{scrheadings}
+\ihead{U1265119 - Researching Music, Technology and Performance - Questionnaire}
+\ohead{\pagemark}
+\chead{}
+\cfoot{}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Beginning of questionnaire command definitions %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% 2010, 2012 by Sven Hartenstein
+%% mail@svenhartenstein.de
+%% http://www.svenhartenstein.de
+%%
+%% Please be warned that this is NOT a full-featured framework for
+%% creating (all sorts of) questionnaires. Rather, it is a small
+%% collection of LaTeX commands that I found useful when creating a
+%% questionnaire. Feel free to copy and adjust any parts you like.
+%% Most probably, you will want to change the commands, so that they
+%% fit your taste.
+%%
+%% Also note that I am not a LaTeX expert! Things can very likely be
+%% done much more elegant than I was able to. If you have suggestions
+%% about what can be improved please send me an email. I intend to
+%% add good tipps to my website and to name contributers of course.
+%%
+%% 10/2012: Thanks to karathan for the suggestion to put \noindent
+%% before \rule!
+
+%% \Qq = Questionaire question. Oh, this is just too simple. It helps
+%% making it easy to globally change the appearance of questions.
+\newcommand{\Qq}[1]{\textbf{#1}}
+
+%% \QO = Circle or box to be ticked. Used both by direct call and by
+%% \Qrating and \Qlist.
+\newcommand{\QO}{$\Box$}% or: $\ocircle$
+
+%% \Qrating = Automatically create a rating scale with NUM steps, like
+%% this: 0--0--0--0--0.
+\newcounter{qr}
+\newcommand{\Qrating}[1]{\QO\forloop{qr}{1}{\value{qr} < #1}{---\QO}}
+
+%% \Qline = Again, this is very simple. It helps setting the line
+%% thickness globally. Used both by direct call and by \Qlines.
+\newcommand{\Qline}[1]{\noindent\rule{#1}{0.6pt}}
+
+%% \Qlines = Insert NUM lines with width=\linewith. You can change the
+%% \vskip value to adjust the spacing.
+\newcounter{ql}
+\newcommand{\Qlines}[1]{\forloop{ql}{0}{\value{ql}<#1}{\vskip0em\Qline{\linewidth}}}
+
+%% \Qlist = This is an environment very similar to itemize but with
+%% \QO in front of each list item. Useful for classical multiple
+%% choice. Change leftmargin and topsep accourding to your taste.
+\newenvironment{Qlist}{%
+\renewcommand{\labelitemi}{\QO}
+\begin{itemize}[leftmargin=1.5em,topsep=-.5em]
+}{%
+\end{itemize}
+}
+
+%% \Qtab = A "tabulator simulation". The first argument is the
+%% distance from the left margin. The second argument is content which
+%% is indented within the current row.
+\newlength{\qt}
+\newcommand{\Qtab}[2]{
+\setlength{\qt}{\linewidth}
+\addtolength{\qt}{-#1}
+\hfill\parbox[t]{\qt}{\raggedright #2}
+}
+
+%% \Qitem = Item with automatic numbering. The first optional argument
+%% can be used to create sub-items like 2a, 2b, 2c, ... The item
+%% number is increased if the first argument is omitted or equals 'a'.
+%% You will have to adjust this if you prefer a different numbering
+%% scheme. Adjust topsep and leftmargin as needed.
+\newcounter{itemnummer}
+\newcommand{\Qitem}[2][]{% #1 optional, #2 notwendig
+\ifthenelse{\equal{#1}{}}{\stepcounter{itemnummer}}{}
+\ifthenelse{\equal{#1}{a}}{\stepcounter{itemnummer}}{}
+\begin{enumerate}[topsep=2pt,leftmargin=2.8em]
+\item[] #2
+\end{enumerate}
+}
+
+%% \QItem = Like \Qitem but with alternating background color. This
+%% might be error prone as I hard-coded some lengths (-5.25pt and
+%% -3pt)! I do not yet understand why I need them.
+\definecolor{bgodd}{rgb}{0.8,0.8,0.8}
+\definecolor{bgeven}{rgb}{0.9,0.9,0.9}
+\newcounter{itemoddeven}
+\newlength{\gb}
+\newcommand{\QItem}[2][]{% #1 optional, #2 notwendig
+\setlength{\gb}{\linewidth}
+\addtolength{\gb}{-5.25pt}
+\ifthenelse{\equal{\value{itemoddeven}}{0}}{%
+\noindent\colorbox{bgeven}{\hskip-3pt\begin{minipage}{\gb}\Qitem[#1]{#2}\end{minipage}}%
+\stepcounter{itemoddeven}%
+}{%
+\noindent\colorbox{bgodd}{\hskip-3pt\begin{minipage}{\gb}\Qitem[#1]{#2}\end{minipage}}%
+\setcounter{itemoddeven}{0}%
+}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% End of questionnaire command definitions %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{center}
+\textbf{\huge Questionnaire on the effects of electronic processing in music}
+\end{center}\vskip1em
+
+\noindent This survey forms part of a study into the effects of audio
+processing on perceptions of musical quality.  You will be presented with a
+selection of 40 audio examples. For each example, you will be asked to provide
+a rating for the example's musical quality. This refers to your opinion on the
+overall skill of the performer/composers. You will also be asked to provide a
+rating for the ``artificialness'' of the example. This refers to the amount of
+influence you believe electronic processing has had on the creation and
+production of this piece. Finally, you are asked to provide a rating for how
+much you like the example. This is purely subject to personal preference.  A
+section is also provided at the bottom of the questionnaire for any further
+comments on examples or the questionnaire in general. Thank you for your
+participation.
+
+
+\section*{Section 1}
+\Qitem{\Qq{
+Have you had any training in the areas of Music and/or Music Technology (i.e. You are or have been a Music/Music Technology student, or are in this field of work)?
+}
+\begin{Qlist}
+\item Yes
+\item No
+\end{Qlist}
+}
+\vskip.9em
+
+\Qitem{\Qq{Please rate these genres in order of your preference:}
+\vskip.25em
+\Qq{Classical} \Qtab{7cm}{\makebox[2.5cm]{Least Favourite\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Favourite\hfill}}\\
+\Qq{Electronic} \Qtab{7cm}{\makebox[2.5cm]{Least Favourite\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Favourite\hfill}}\\
+\Qq{Indie} \Qtab{7cm}{\makebox[2.5cm]{Least Favourite\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Favourite\hfill}}\\
+\Qq{Rock} \Qtab{7cm}{\makebox[2.5cm]{Least Favourite\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Favourite\hfill}}\\
+\Qq{Pop} \Qtab{7cm}{\makebox[2.5cm]{Least Favourite\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Favourite\hfill}}\\
+}
+\vskip.9em
+
+\section*{Section 2}
+\newcounter{example}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+\refstepcounter{example}
+\vskip.75em
+\Qitem{\Qq{Please rate example \theexample~here:}
+\vskip.25em
+\Qq{Musical Quality/Accomplishment} \Qtab{7cm}{\makebox[2.5cm]{Low Quality\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{High Quality\hfill}}\\
+\Qq{Artificialness} \Qtab{7cm}{\makebox[2.5cm]{Natural\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Synthetic\hfill}}\\
+\Qq{Preference} \Qtab{7cm}{\makebox[2.5cm]{Dislike\hfill}\tab[0.1cm] \Qrating{5}\tab\makebox[2cm]{Like\hfill}}\\
+}
+
+
+
+\section*{Further Comments}
+
+\Qitem[a]{ \Qq{} \Qlines{12} }
+
+
+
+\end{document}
